@@ -171,10 +171,10 @@
     clip-path: polygon(0 0, 46% 0, 79% 100%, 0% 100%);
   }
   .header-content .left-header .image {
-    border-radius: 10% ;
+    border-radius: 20% ;
     height: 90%;
     width: 68%;
-    margin-left: 4rem;
+    margin-left: 8rem;
     background-color: var(--color-black);
     transition: all 0.4s ease-in-out;
   }
