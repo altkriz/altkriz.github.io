@@ -5,7 +5,7 @@
     list-style: none;
   }
   
-  :root {
+  .light-mode {
     --color-primary: #191d2b;
     --color-secondary: #27AE60;
     --color-white: #FFFFFF;
@@ -21,7 +21,7 @@
     --box-shadow-1: 0 3px 15px rgba(0,0,0,.3);
   }
   
-  .light-mode {
+  .root {
     --color-primary: #FFFFFF;
     --color-secondary: #7232cc;
     --color-white: #454e56;
