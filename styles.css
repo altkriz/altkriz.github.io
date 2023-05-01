@@ -21,7 +21,7 @@
     --box-shadow-1: 0 3px 15px rgba(0,0,0,.3);
   }
   
-  .root {
+  :root {
     --color-primary: #FFFFFF;
     --color-secondary: #7232cc;
     --color-white: #454e56;
@@ -292,7 +292,7 @@
     align-items: center;
   }
   .about-stats .progress-bars .progress-bar .progress-con .prog-text {
-    color: var(--color-white-2);
+    color: var(--color-white);
   }
   .about-stats .progress-bars .progress-bar .progress-con .progress {
     width: 100%;
