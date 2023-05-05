@@ -2,7 +2,7 @@
 if (isset($_POST['email'])) {
 
     // REPLACE THIS 2 LINES AS YOU DESIRE
-    $email_to = "admin@kriztech.in";
+    $email_to = "k.raza1932000@gmail.com";
     $email_subject = "You've got a new submission";
 
     function problem($error)
@@ -16,7 +16,7 @@ if (isset($_POST['email'])) {
     // validation expected data exists
     if (
         !isset($_POST['fullName']) ||
-        !isset($_POST['email']) ||
+        !isset($_POST['email']) ||  
         !isset($_POST['message'])
     ) {
         problem('Oh looks like there is some problem with your form data.');
