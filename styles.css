@@ -890,6 +890,7 @@
       grid-template-columns: repeat(1, 1fr);
     }
     .about-container .right-about {
+      margin: auto;
       padding-top: 2.5rem;
     }
   
