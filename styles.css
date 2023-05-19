@@ -37,7 +37,7 @@
   
   body {
     background-color: var(--color-primary);
-    font-family: "Poppins", sans-serif;
+    font-family: "TTNormsProSerif", Bold;
     font-size: 1.1rem;
     color: var(--color-white);
     transition: all 0.4s ease-in-out;
