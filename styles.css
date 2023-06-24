@@ -113,7 +113,7 @@
   }
   .controls .control i {
     font-size: 1.2rem;
-    color: var(--color-grey-2);
+    color: var(--color-white);
     pointer-events: none;
   }
   .controls .active-btn {
