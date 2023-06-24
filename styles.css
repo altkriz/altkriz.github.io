@@ -215,10 +215,9 @@
   }
   .about-container .right-about {
     display: grid;
-    float: right;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 2rem;
-    border-radius: 21px;
+    border-radius: 12px;
   }
   .about-container .right-about .about-item {
     border: 1px solid var(--color-grey-5);
