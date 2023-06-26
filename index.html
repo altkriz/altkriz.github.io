@@ -323,20 +323,17 @@
                         </div>
                     </div>
                     <div class="right-contact">
-                        <div class="formcarry-container">
-                            <form action="https://demo.kriztech.in/form-process.php" method="POST" class="formcarry-form">
-                              <label for="name">Your Name</label>
-                              <input type="text" id="name" name="fullName" required />
-                      
-                              <label for="email">Your Email Address</label>
-                              <input type="email" id="email" name="email" required />
-                      
-                              <label for="message">Your Message</label>
-                              <textarea name="message" id="message" cols="30" rows="10"></textarea>
-                      
-                              <button type="submit">Send</button>
-                            </form>
-                          </div>
+                       <form class="form" method="post" action="https://demo.kriztech.in/kriz/send_email.php">
+  <h2>CONTACT US</h2>
+  <p type="Name:"><input name="name" placeholder="Write your name here.."></input></p>
+  <p type="Email:"><input name="email" placeholder="Let us know how to contact you back.."></input></p>
+  <p type="Message:"><input name="message" placeholder="What would you like to tell us.."></input></p>
+  <button type="submit">Send Message</button>
+  <div>
+    <span class="fa fa-phone"></span>9315503145
+    <span class="fa fa-envelope-o"></span> contact@kriztech.in
+  </div>
+</form>
                     </div>
                 </div>
             </div>
