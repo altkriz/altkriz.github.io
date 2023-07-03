@@ -323,17 +323,17 @@
                         </div>
                     </div>
                     <div class="right-contact">
-                       <form class="form" method="post" action="https://demo.kriztech.in/kriz/send_email.php">
-  <h2>CONTACT US</h2>
-  <p type="Name:"><input name="name" placeholder="Write your name here.."></input></p>
-  <p type="Email:"><input name="email" placeholder="Let us know how to contact you back.."></input></p>
-  <p type="Message:"><input name="message" placeholder="What would you like to tell us.."></input></p>
-  <button type="submit">Send Message</button>
-  <div>
-    <span class="fa fa-phone"></span>9315503145
-    <span class="fa fa-envelope-o"></span> contact@kriztech.in
-  </div>
-</form>
+                        <h1>Contact Us</h1>
+            <form id="contact-form">
+              <label for="name">Name:</label>
+              <input type="text" id="name" name="name" required><br>
+              <label for="email">Email:</label>
+              <input type="email" id="email" name="email" required><br>
+              <label for="message">Message:</label>
+              <textarea id="message" name="message" required></textarea><br>
+              <button type="submit">Send</button>
+            </form>
+            <div id="response"></div>
                     </div>
                 </div>
             </div>
@@ -358,6 +358,7 @@
     <div class="theme-btn">
         <i class="fas fa-adjust"></i>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://kraza1932000.github.io/Altkriz/app.js"></script>
 </body>
 </html>
