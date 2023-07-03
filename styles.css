@@ -171,7 +171,7 @@
       clip-path: polygon(0 0, 46% 0, 79% 100%, 0% 100%);
     }
     .header-content .left-header .image {
-      border-radius: var(--br-sm-2);
+      border-radius: 10%;
       height: 90%;
       width: 68%;
       margin-left: 4rem;
