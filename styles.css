@@ -1030,8 +1030,8 @@ button[type="submit"]:hover {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: var(--cursor-color);
-  height: 10px;
-  width: 10px;
+  height: 20px;
+  width: 20px;
   border-radius: 50px;
 }
 .cursor::before {
