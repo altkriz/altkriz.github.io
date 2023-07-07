@@ -6,6 +6,7 @@
 }
 
 :root {
+  --cursor-color: #38915d;
   --color-primary: #191d2b;
   --color-secondary: #27AE60;
   --color-white: #FFFFFF;
@@ -22,6 +23,7 @@
 }
 
 .light-mode {
+  --cursor-color: #101111;
   --color-primary: #FFFFFF;
   --color-secondary: #3388e2;
   --color-white: #454e56;
@@ -1027,17 +1029,17 @@ button[type="submit"]:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: white;
+  background-color: var(--cursor-color);
   height: 10px;
   width: 10px;
   border-radius: 50px;
 }
 .cursor::before {
-  background-color: rgb(255, 255, 255);
+  background-color: var(--cursor-color);
 }
 .cursor.click::before {
   animation: click 1s ease forwards;
-  background-color: rgb(255, 255, 255);
+  background-color: var(--cursor-color);
 }
 @keyframes click {
   0% {
