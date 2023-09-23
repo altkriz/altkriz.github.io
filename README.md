@@ -12,7 +12,7 @@ Here are some screenshots of the portfolio demo:
 
 Demo Links
 
-https://kraza1932000.github.io/Altkriz
+https://altkriz.github.io
 
 Technologies Used
 The portfolio demo is built using the following technologies:
