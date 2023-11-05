@@ -21,6 +21,8 @@ HTML
 CSS
 JavaScript
 
+[![An image of @altkriz's Holopin badges, which is a link to view their full Holopin profile](https://holopin.me/altkriz)](https://holopin.io/@altkriz)
+
 How to Use
 To use the portfolio demo, simply download the code and open the index.html file in your web browser. You can then view the portfolio and customize it to your liking.
 
