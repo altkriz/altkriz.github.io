@@ -1,4 +1,4 @@
-### Hi there, I'm [Kashif Raza]! 👋
+I'm [Kashif Raza]! 👋
 
 I'm a developer and a passionate student, eager to learn and explore the world of software development, web development, and Android app development. Welcome to my GitHub Profile! Here, you'll find some of my best projects and my achievements in Hacktoberfest.
 
