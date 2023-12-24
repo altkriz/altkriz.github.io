@@ -9,35 +9,18 @@ I'm a developer and a passionate student, eager to learn and explore the world o
 
 ### 🛠️ Technologies & Tools:
 
-![HTML](Technology Logo URL) ![CSS](Technology Logo URL) ![JavaScript](Technology Logo URL) ![React](Technology Logo URL) ![Python](Technology Logo URL) ![Android Studio](Technology Logo URL)
+![HTML]([Technology Logo URL](https://raw.githubusercontent.com/bablubambal/All_logo_and_pictures/1ac69ce5fbc389725f16f989fa53c62d6e1b4883/social%20icons/html5.svg)) ![CSS]([Technology Logo URL](https://raw.githubusercontent.com/bablubambal/All_logo_and_pictures/1ac69ce5fbc389725f16f989fa53c62d6e1b4883/social%20icons/css3.svg)) ![JavaScript](https://raw.githubusercontent.com/bablubambal/All_logo_and_pictures/1ac69ce5fbc389725f16f989fa53c62d6e1b4883/social%20icons/javascript.svg) ![React](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTacTmPUhMH8T2wz8HfeL46jHZ_YcQjcwTfrw&usqp=CAU) 
 
-### 📂 My Top Repositories:
-
-Here are some of my top repositories that I'm proud of:
-
-1. [Repository 1](Link to Repo): A brief description of what this project is and what you achieved with it.
-
-   [![GitHub Stars](Link to Stars Badge)](Link to Repo) [![GitHub Forks](Link to Forks Badge)](Link to Repo) [![GitHub Issues](Link to Issues Badge)](Link to Repo)
-
-2. [Repository 2](Link to Repo): Another awesome project you want to showcase.
-
-   [![GitHub Stars](Link to Stars Badge)](Link to Repo) [![GitHub Forks](Link to Forks Badge)](Link to Repo) [![GitHub Issues](Link to Issues Badge)](Link to Repo)
-
-3. [Repository 3](Link to Repo): Keep the list going with more of your work.
-
-   [![GitHub Stars](Link to Stars Badge)](Link to Repo) [![GitHub Forks](Link to Forks Badge)](Link to Repo) [![GitHub Issues](Link to Issues Badge)](Link to Repo)
 
 ### 🏆 Hacktoberfest Achievements:
 
 I'm proud to have participated in Hacktoberfest and contributed to open-source projects. Here are some of my achievements:
 
-- [Badge 1](Link to Badge): Description of the achievement.
-- [Badge 2](Link to Badge): Another achievement or contribution.
-
+- [Badge 1]([Link to Badge](https://boards.holopin.io/altkriz)): 
 ### 📬 Get in Touch:
 
-- Connect with me on [LinkedIn](Your LinkedIn Profile Link).
-- Follow me on [Twitter](Your Twitter Profile Link).
-- Send me an [email](Your Email Address).
+- Connect with me on [Instagram](https://instagram.com/k.raza193).
+- Follow me on [Twitter](https://twitter.com/altkriz).
+- Send me an [email](k.raza1932000@gmail.com).
 
 Feel free to explore my repositories and reach out to me for collaborations or just to chat about tech! 😄
