@@ -1,373 +1,808 @@
-
-
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kashif Raza</title>
-    <link rel="icon" type="image/x-icon" href="https://altkriz.github.io/favicon.ico">
-    <link rel="stylesheet" href="https://altkriz.github.io/styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/2149c7b369.js" crossorigin="anonymous"></script>
-   <style>
-   img{
-    border-radius: 10%;
-   }
-   </style>
+    <title>Kashif Raza | Engineer & Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #f5f7fa;
+            color: #0f172a;
+            overflow-x: hidden;
+        }
+        
+        .dark body {
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .card-glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .dark .card-glass {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .tech-tag {
+            background: linear-gradient(90deg, #6366f180, #8b5cf680);
+            color: white;
+        }
+        
+        .dark .tech-tag {
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+        }
+        
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .gradient-border {
+            position: relative;
+            background: #f5f7fa;
+        }
+        
+        .dark .gradient-border {
+            background: #0f172a;
+        }
+        
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 0.5rem;
+            padding: 2px;
+            background: linear-gradient(45deg, #6366f1, #8b5cf6);
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+        
+        .cursor-follower {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(99, 102, 241, 0.5);
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease;
+            mix-blend-mode: multiply;
+        }
+        
+        .dark .cursor-follower {
+            background: rgba(139, 92, 246, 0.5);
+            mix-blend-mode: screen;
+        }
+        
+        .active-link {
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+    </style>
 </head>
-<body class="main-content">
-    <div class="cursor"></div>
-    <header class="container header active" id="home">
-        <div class="header-content">
-            <div class="left-header">
-                <div class="h-shape"></div>
-                <div class="image">
-                    <img src="https://altkriz.github.io/img/hera.jpg"  alt="Kashif Raza">
-                </div>
-            </div>
-            <div class="right-header">
-                <h1 class="name">
-                    Hi, I'm <span>Kashif Raza.</span>
-                </h1>
-                <h2>
-                    I'm a Diploma in Electronics Engineer and  BCA Graduate , I love to create beautiful and functional websites with tons of features that can be customized according to the needs of the clients. 
-                </h2>
-                <div class="btn-con">
-                    <a href="https://www.dropbox.com/s/c3amdqq6vq9onzh/kashifRaza%20CV.docx?dl=0" class="main-btn">
-                        <span class="btn-text">Download CV</span>
-                       <span class="btn-icon"><i class="fas fa-download"></i></span>
-                    </a>
-                </div>
+<body class="transition-colors duration-300">
+    <div class="cursor-follower"></div>
+    
+    <!-- Floating particles background -->
+    <div class="fixed inset-0 overflow-hidden opacity-10 dark:opacity-5 -z-10">
+        <div class="absolute w-2 h-2 rounded-full bg-indigo-500 top-1/4 left-1/5 floating" style="animation-delay: 0s"></div>
+        <div class="absolute w-3 h-3 rounded-full bg-purple-500 top-1/3 right-1/4 floating" style="animation-delay: 1s"></div>
+        <div class="absolute w-2 h-2 rounded-full bg-indigo-500 bottom-1/4 right-1/5 floating" style="animation-delay: 2s"></div>
+        <div class="absolute w-3 h-3 rounded-full bg-purple-500 bottom-1/3 left-1/4 floating" style="animation-delay: 3s"></div>
+        <div class="absolute w-1 h-1 rounded-full bg-pink-500 top-1/2 left-1/2 floating" style="animation-delay: 4s"></div>
+    </div>
+
+    <!-- Header/Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 py-4 px-6 backdrop-blur-md bg-white/70 dark:bg-slate-900/70 shadow-sm">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold gradient-text">Kashif Raza</a>
+            
+            <nav class="hidden md:flex space-x-1 bg-white/50 dark:bg-slate-800/50 p-1 rounded-full shadow-inner">
+                <a href="#hero" class="py-2 px-4 rounded-full text-sm font-medium transition-all hover:text-indigo-600 dark:hover:text-purple-400 active-link">Home</a>
+                <a href="#about" class="py-2 px-4 rounded-full text-sm font-medium transition-all hover:text-indigo-600 dark:hover:text-purple-400">About</a>
+                <a href="#skills" class="py-2 px-4 rounded-full text-sm font-medium transition-all hover:text-indigo-600 dark:hover:text-purple-400">Skills</a>
+                <a href="#projects" class="py-2 px-4 rounded-full text-sm font-medium transition-all hover:text-indigo-600 dark:hover:text-purple-400">Projects</a>
+                <a href="#contact" class="py-2 px-4 rounded-full text-sm font-medium transition-all hover:text-indigo-600 dark:hover:text-purple-400">Contact</a>
+            </nav>
+            
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" class="w-10 h-10 rounded-full flex items-center justify-center bg-indigo-100 dark:bg-purple-900/50 text-indigo-600 dark:text-purple-300 hover:bg-indigo-200 dark:hover:bg-purple-800 transition-colors">
+                    <i class="fas fa-moon dark:hidden"></i>
+                    <i class="fas fa-sun hidden dark:block"></i>
+                </button>
+                
+                <button class="md:hidden focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
             </div>
         </div>
     </header>
-    <main>
-        <section class="container about" id="about">
-            <div class="main-title">
-                <h2>Skills <span>me</span></h2>
-            </div>
-            <div class="about-container">
-                <div class="left-about">
-                    <h1>Information About me</h1>
-                    <p>
-                        I'm an Engineer and  Web Developer, I love to create beautiful and functional websites with tons of features that can be customized according to the needs of the clients.
+
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen flex items-center pt-16">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
+                <div class="lg:w-1/2 space-y-8">
+                    <div class="flex items-center space-x-4">
+                        <div class="h-px w-12 bg-indigo-500"></div>
+                        <span class="text-sm font-medium">Diploma in Electronics & BCA Graduate</span>
+                    </div>
+                    
+                    <h1 class="text-5xl md:text-6xl font-bold leading-tight">
+                        Building Digital <span class="gradient-text">Experiences</span> That Matter
+                    </h1>
+                    
+                    <p class="text-lg text-slate-600 dark:text-slate-300">
+                        I'm Kashif Raza, blending my electronics engineering expertise with creative web development to craft innovative digital solutions.
                     </p>
-                    <div class="btn-con">
-                        <a href="https://www.dropbox.com/s/c3amdqq6vq9onzh/kashifRaza%20CV.docx?dl=0" class="main-btn">
-                            <span class="btn-text">Download CV</span>
-                            <span class="btn-icon"><i class="fas fa-download"></i></span>
+                    
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <a href="#contact" class="px-8 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-full font-medium shadow-lg hover:shadow-indigo-300 dark:hover:shadow-purple-700 transition-all transform hover:-translate-y-1">
+                            Let's Talk
+                        </a>
+                        <a href="https://www.dropbox.com/s/c3amdqq6vq9onzh/kashifRaza%20CV.docx?dl=0" class="px-8 py-3 border-2 border-indigo-500 dark:border-purple-500 text-indigo-600 dark:text-purple-300 rounded-full font-medium hover:bg-indigo-50 dark:hover:bg-purple-900/20 transition-all">
+                            Download CV <i class="fas fa-download ml-2"></i>
                         </a>
                     </div>
                 </div>
                 
-                    <div class="image">
-                        <img src="https://altkriz.github.io/img/hera.jpg"  alt="Kashif Raza" width="400px" height="500px" style="float: right; object-position: right top; border-radius: 10%;">
-                      
+                <div class="lg:w-1/2 relative">
+                    <div class="w-full aspect-square max-w-md mx-auto relative floating" style="animation-duration: 8s;">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-indigo-400 to-purple-500 rounded-2xl transform -rotate-6"></div>
+                        <img src="https://altkriz.github.io/img/hera.jpg" alt="Kashif Raza" class="relative w-full h-full object-cover rounded-2xl transform rotate-3 border-4 border-white dark:border-slate-800 shadow-xl">
+                    </div>
                 </div>
             </div>
-            <div class="about-stats">
-                <h4 class="stat-title">My Skills</h4>
-                <div class="progress-bars">
-                    <div class="progress-bar">
-                        <p class="prog-title">html5</p>
-                        <div class="progress-con">
-                            <p class="prog-text">80%</p>
-                            <div class="progress">
-                                <span class="html"></span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold gradient-text inline-block">Professional Journey</h2>
+                <p class="mt-4 max-w-2xl mx-auto text-slate-600 dark:text-slate-300">
+                    My unique blend of electronics engineering and web development creates innovative technical solutions
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card-glass p-8 rounded-xl shadow-sm hover:shadow-md transition-all transform hover:-translate-y-2">
+                    <div class="w-14 h-14 rounded-full bg-indigo-100 dark:bg-purple-900 flex items-center justify-center mb-6">
+                        <i class="fas fa-microchip text-indigo-500 dark:text-purple-300 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Electronics Engineer</h3>
+                    <p class="text-slate-600 dark:text-slate-300">
+                        Certified electronics professional with hands-on experience in circuit design, embedded systems, and IoT solutions.
+                    </p>
+                </div>
+                
+                <div class="card-glass p-8 rounded-xl shadow-sm hover:shadow-md transition-all transform hover:-translate-y-2 relative overflow-hidden">
+                    <div class="w-14 h-14 rounded-full bg-indigo-100 dark:bg-purple-900 flex items-center justify-center mb-6">
+                        <i class="fas fa-code text-indigo-500 dark:text-purple-300 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Web Developer</h3>
+                    <p class="text-slate-600 dark:text-slate-300">
+                        Passionate about crafting beautiful, functional websites with customizable features tailored to client needs.
+                    </p>
+                </div>
+                
+                <div class="card-glass p-8 rounded-xl shadow-sm hover:shadow-md transition-all transform hover:-translate-y-2">
+                    <div class="w-14 h-14 rounded-full bg-indigo-100 dark:bg-purple-900 flex items-center justify-center mb-6">
+                        <i class="fas fa-blog text-indigo-500 dark:text-purple-300 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Tech Blogger</h3>
+                    <p class="text-slate-600 dark:text-slate-300">
+                        Sharing knowledge through technical blogs and tutorials on programming, electronics, and technology.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="order-last lg:order-first">
+                    <div class="gradient-border p-1 rounded-lg w-fit">
+                        <div class="bg-white dark:bg-slate-800 p-1 rounded-lg">
+                            <img src="https://altkriz.github.io/img/hera.jpg" alt="Kashif Raza" class="w-full max-w-md rounded-lg shadow-lg">
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h2 class="text-3xl font-bold mb-6"><span class="gradient-text">Beyond</span> the Code</h2>
+                    <p class="text-slate-600 dark:text-slate-300 mb-6">
+                        With a foundation in Electronics Engineering from Ambedkar Institute of Technology and a BCA from IGNOU, I bring a unique perspective to technology. My journey has been about bridging hardware and software to create comprehensive solutions.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-full bg-indigo-100 dark:bg-purple-900 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-map-marker-alt text-indigo-500 dark:text-purple-300"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Based in New Delhi</h4>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">Creating digital solutions for global clients</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-full bg-indigo-100 dark:bg-purple-900 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-language text-indigo-500 dark:text-purple-300"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Multilingual</h4>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">English, Urdu, Arabic - facilitating global collaboration</p>
                             </div>
                         </div>
                     </div>
-                    <div class="progress-bar">
-                        <p class="prog-title">CSS</p>
-                        <div class="progress-con">
-                            <p class="prog-text">75%</p>
-                            <div class="progress">
-                                <span class="css"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-slate-800 dark:to-slate-900">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold gradient-text inline-block">Technical Arsenal</h2>
+                <p class="mt-4 max-w-2xl mx-auto text-slate-600 dark:text-slate-300">
+                    The tools and technologies I use to bring ideas to life
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+                <div class="relative">
+                    <div class="absolute -left-8 -top-8 w-32 h-32 rounded-full bg-indigo-200 dark:bg-purple-900/30 blur-3xl"></div>
+                    <div class="card-glass p-8 rounded-xl shadow-sm h-full">
+                        <h3 class="text-xl font-bold mb-6 flex items-center">
+                            <i class="fas fa-laptop-code mr-3 gradient-text"></i>
+                            Web Development
+                        </h3>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">HTML5</span>
+                                    <span class="font-bold gradient-text">80%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+                                    <div class="h-full rounded-full" style="background: linear-gradient(90deg, #6366f1, #8b5cf6); width: 80%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">CSS</span>
+                                    <span class="font-bold gradient-text">75%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+                                    <div class="h-full rounded-full" style="background: linear-gradient(90deg, #6366f1, #8b5cf6); width: 75%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">JavaScript</span>
+                                    <span class="font-bold gradient-text">75%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+                                    <div class="h-full rounded-full" style="background: linear-gradient(90deg, #6366f1, #8b5cf6); width: 75%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">Tailwind CSS</span>
+                                    <span class="font-bold gradient-text">85%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+                                    <div class="h-full rounded-full" style="background: linear-gradient(90deg, #6366f1, #8b5cf6); width: 85%"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="progress-bar">
-                        <p class="prog-title">Javascript</p>
-                        <div class="progress-con">
-                            <p class="prog-text">75%</p>
-                            <div class="progress">
-                                <span class="js"></span>
+                </div>
+                
+                <div class="relative">
+                    <div class="absolute -right-8 -bottom-8 w-32 h-32 rounded-full bg-purple-200 dark:bg-indigo-900/30 blur-3xl"></div>
+                    <div class="card-glass p-8 rounded-xl shadow-sm h-full">
+                        <h3 class="text-xl font-bold mb-6 flex items-center">
+                            <i class="fas fa-microchip mr-3 gradient-text"></i>
+                            Software & Hardware
+                        </h3>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">Java</span>
+                                    <span class="font-bold gradient-text">70%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+                                    <div class="h-full rounded-full" style="background: linear-gradient(90deg, #6366f1, #8b5cf6); width: 70%"></div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    
-                    
-                    <div class="progress-bar">
-                        <p class="prog-title">Java</p>
-                        <div class="progress-con">
-                            <p class="prog-text">70%</p>
-                            <div class="progress">
-                                <span class="Java"></span>
+                            
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">Raspberry Pi</span>
+                                    <span class="font-bold gradient-text">80%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+                                    <div class="h-full rounded-full" style="background: linear-gradient(90deg, #6366f1, #8b5cf6); width: 80%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">IoT Projects</span>
+                                    <span class="font-bold gradient-text">75%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+                                    <div class="h-full rounded-full" style="background: linear-gradient(90deg, #6366f1, #8b5cf6); width: 75%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">OpenVPN</span>
+                                    <span class="font-bold gradient-text">85%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+                                    <div class="h-full rounded-full" style="background: linear-gradient(90deg, #6366f1, #8b5cf6); width: 85%"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             
-        
-        </section>
-        <section class="container" id="portfolio">
-            <div class="main-title">
-                <h2>My <span>Portfolio</span><span class="bg-text">My Work</span></h2>
+            <div class="mt-12 flex flex-wrap justify-center gap-3">
+                <span class="tech-tag px-4 py-2 rounded-full text-sm font-medium">HTML5</span>
+                <span class="tech-tag px-4 py-2 rounded-full text-sm font-medium">CSS3</span>
+                <span class="tech-tag px-4 py-2 rounded-full text-sm font-medium">JavaScript</span>
+                <span class="tech-tag px-4 py-2 rounded-full text-sm font-medium">Tailwind CSS</span>
+                <span class="tech-tag px-4 py-2 rounded-full text-sm font-medium">Java</span>
+                <span class="tech-tag px-4 py-2 rounded-full text-sm font-medium">Raspberry Pi</span>
+                <span class="tech-tag px-4 py-2 rounded-full text-sm font-medium">IoT</span>
+                <span class="tech-tag px-4 py-2 rounded-full text-sm font-medium">OpenVPN</span>
             </div>
-            <p class="port-text">
-                Here is some of my work that I've done in various programming languages.
-            </p>
-            <div class="portfolios">
-                <div class="portfolio-item">
-                    <div class="image">
-                        <img src="https://1.bp.blogspot.com/-fEOiUn8vCuQ/X2YkOTDZm0I/AAAAAAAAAV8/OJHbuv-h9rU1Pf-Q049tPBhIygtMkt0PACLcBGAsYHQ/w640-h426/OpenVPN-Server-on-Raspberry-Pi.jpg" alt="">
-                    </div>
-                    <div class="hover-items">
-                        <h3><center>Raspberry PI Zero Vpn Server OpenVPN</center></h3>
-                        <div class="icons">
-                            <a href="https://github.com/altkriz" class="icon">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="https://kriztechblogs.blogspot.com/2020/09/turn-your-raspberry-pi-zero-into-vpn.html" class="icon">
-                                <i class="fab fa-blogger"></i>
-                            </a>
-                            <a href="https://www.facebook.com/k.raza193" class="icon">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            
-                            <a href="https://instagram.com/k.raza1932000" class="icon">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="image">
-                        <img src="https://circuitdigest.com/sites/default/files/projectimage_mic/Raspberry-Pi-Internet-radio-and-Streaming-Station.jpg" alt="">
-                    </div>
-                    <div class="hover-items">
-                        <h3><center>Raspberry Pi Internet Radio</center></h3>
-                        <div class="icons">
-                            <a href="https://github.com/altkriz" class="icon">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="https://kriztechblogs.blogspot.com/2021/06/raspberry-pi-internet-radio-and.html" class="icon">
-                                <i class="fab fa-blogger"></i>
-                            <a href="https://www.facebook.com/k.raza193" class="icon">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="https://instagram.com/k.raza1932000" class="icon">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-               <div class="portfolio-item">
-                    <div class="image">
-                        <img src="https://camo.githubusercontent.com/a2f61e3a5f8fac897b6bc52ff20308c39b861ba49ddab483d171d1808580a009/68747470733a2f2f6b72617a61313933323030302e6769746875622e696f2f68746d6c656469746f722f7363722e706e67" alt="htmleditor">
-                    </div>
-                    <div class="hover-items">
-                        <h3><center>Kriztech Code Editor</center></h3>
-                        <div class="icons">
-                            <a href="https://github.com/altkriz/htmleditor" class="icon">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="https://altkriz.github.io/htmleditor" class="icon">
-                                <i class="fa fa-globe"></i>
-                            </a>
-                            <a href="https://www.facebook.com/k.raza193" class="icon">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            
-                            <a href="https://instagram.com/k.raza193" class="icon">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="image">
-                        <img src="https://altkriz.github.io/img/krizbio.png" alt="KrizBio">
-                    </div>
-                    <div class="hover-items">
-                        <h3><center>KrizBio Shortlink & Bio Maker</center></h3>
-                        <div class="icons">
-                            <a href="https://github.com/altkriz" class="icon">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="https://bio.kriztech.in" class="icon">
-                                <i class="fa fa-globe"></i>
-                            </a>
-                            <a href="https://www.facebook.com/k.raza193" class="icon">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            
-                            <a href="https://instagram.com/k.raza1932000" class="icon">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="image">
-                        <img src="https://altkriz.github.io/img/krizcode.png" alt="KrizCode blog">
-                    </div>
-                    <div class="hover-items">
-                        <h3><center>KrizCode Blog</center></h3>
-                        <div class="icons">
-                            <a href="https://github.com/altkriz/" class="icon">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="https://krizcode.blogspot.com/" class="icon">
-                                <i class="fa fa-globe"></i>
-                            </a>
-                            <a href="https://www.facebook.com/k.raza193" class="icon">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            
-                            <a href="https://instagram.com/k.raza1932000" class="icon">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="image">
-                        <img src="altkriz.github.io/img/kriznews.png" alt="kriznews">
-                    </div>
-                    <div class="hover-items">
-                        <h3><center>KrizNews | Your Technews Buddy</center></h3>
-                        <div class="icons">
-                            <a href="https://github.com/altkriz" class="icon">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="https://news.kriztech.in" class="icon">
-                                <i class="fa fa-globe"></i>
-                            </a>
-                            <a href="https://www.facebook.com/k.raza193" class="icon">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            
-                            <a href="https://instagram.com/k.raza1932000" class="icon">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-               </div>
-        </section>
-        <section class="container contact" id="contact">
-            <div class="contact-container">
-                <div class="main-title">
-                    <h2>Contact <span>Me</span><span class="bg-text">Contact</span></h2>
-                </div>
-                <div class="contact-content-con">
-                    <div class="left-contact">
-                        <h4>Contact me here</h4>
-                        <p>
-                            I'm an Diploma in Electronics Engineer and  BCA Graduate , I love to create beautiful and functional websites with tons of features that can be customized according to the needs of the clients.
-                        </p>
-                        <div class="contact-info">
-                            <div class="contact-item">
-                                <div class="icon">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    <span>Location : New Delhi , India</span>
-                                </div>
-                            
-                            </div>
-                            <div class="contact-item">
-                                <div class="icon">
-                                    <i class="fas fa-envelope"></i>
-                                    <span>Email :K.raza1932000@gmail.com</span>
-                                </div>
-                                
-                            </div>
-                            <div class="contact-item">
-                                <div class="icon">
-                                    <i class="fas fa-user-graduate"></i>
-                                    <span>Education : Ambedkar Institute of Technology
-                                                      Indira Gandhi National Open University</span>
-                                </div>
-                                
-                            </div>
-                            <div class="contact-item">
-                                <div class="icon">
-                                    <i class="fa fa-phone"></i>
-                                    <span>Mobile Number : 9315503145 </span>
-                                </div>
-                                
-                            </div>
-                            <div class="contact-item">
-                                <div class="icon">
-                                    <i class="fas fa-globe"></i>
-                                    <span>Languages : English, Urdu , Arabic</span>
-                                </div>
-                                
-                            </div>
-                        </div>
-                        <div class="contact-icons">
-                            <div class="contact-icon">
-                                      <a href="https://twitter.com/altkriz" target="_blank"><i class="fab fa-twitter fa-2x" style="color: #55acee;"></i></a>
-                                
-                                <a href="https://github.com/altkriz" target="_blank">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                                    <a href="https://www.instagram.com/k.raza193" target="_blank"><i class="fab fa-instagram fa-2x" style="color: #ac2bac;"></i></a>
-                              <a href="https://www.facebook.com/k.raza193" target="_blank"><i class="fab fa-facebook-f fa-2x" style="color: #3b5998;"></i></a>
-                      <a href="https://news.kriztech.in" target="_blank"><i class="fa fa-globe fa-2x" style="color: #3b5998;"></i></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="right-contact">
-                        <h1>Contact Us</h1>
-            <form id="contact-form">
-              <label for="name">Name:</label>
-              <input type="text" id="name" name="name" required><br>
-              <label for="email">Email:</label>
-              <input type="email" id="email" name="email" required><br>
-              <label for="message">Message:</label>
-              <textarea id="message" name="message" required></textarea><br>
-              <button type="submit">Send</button>
-            </form>
-            <div id="response"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <div class="controls">
-        <div class="control active-btn" data-id="home" >
-            <i class="fa fa-home" aria-hidden="false"></i>
+    <!-- Projects Section -->
+    <section id="projects" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold gradient-text inline-block">Project Gallery</h2>
+                <p class="mt-4 max-w-2xl mx-auto text-slate-600 dark:text-slate-300">
+                    A showcase of my recent work and technical explorations
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 duration-300 border border-slate-100 dark:border-slate-800">
+                    <div class="aspect-video overflow-hidden">
+                        <img src="https://1.bp.blogspot.com/-fEOiUn8vCuQ/X2YkOTDZm0I/AAAAAAAAAV8/OJHbuv-h9rU1Pf-Q049tPBhIygtMkt0PACLcBGAsYHQ/w640-h426/OpenVPN-Server-on-Raspberry-Pi.jpg" alt="Raspberry PI Zero VPN Server" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 bg-white dark:bg-slate-800">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">Raspberry PI VPN Server</h3>
+                            <span class="text-xs px-2 py-1 bg-indigo-100 dark:bg-purple-900/50 text-indigo-600 dark:text-purple-300 rounded-full">Electronics</span>
+                        </div>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">
+                            Turn Raspberry Pi Zero into a VPN server using OpenVPN protocol
+                        </p>
+                        <div class="flex space-x-4">
+                            <a href="https://kriztechblogs.blogspot.com/2020/09/turn-your-raspberry-pi-zero-into-vpn.html" target="_blank" class="text-sm text-indigo-500 dark:text-purple-400 font-medium hover:text-indigo-600 dark:hover:text-purple-300 flex items-center">
+                                <i class="fas fa-external-link-alt mr-1"></i> View Project
+                            </a>
+                            <a href="https://github.com/altkriz" target="_blank" class="text-sm text-slate-500 dark:text-slate-400 font-medium hover:text-indigo-600 dark:hover:text-purple-300 flex items-center">
+                                <i class="fab fa-github mr-1"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 duration-300 border border-slate-100 dark:border-slate-800">
+                    <div class="aspect-video overflow-hidden">
+                        <img src="https://circuitdigest.com/sites/default/files/projectimage_mic/Raspberry-Pi-Internet-radio-and-Streaming-Station.jpg" alt="Raspberry Pi Internet Radio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 bg-white dark:bg-slate-800">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">Internet Radio Station</h3>
+                            <span class="text-xs px-2 py-1 bg-indigo-100 dark:bg-purple-900/50 text-indigo-600 dark:text-purple-300 rounded-full">IoT</span>
+                        </div>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">
+                            Raspberry Pi powered internet radio with streaming capabilities
+                        </p>
+                        <div class="flex space-x-4">
+                            <a href="https://kriztechblogs.blogspot.com/2021/06/raspberry-pi-internet-radio-and.html" target="_blank" class="text-sm text-indigo-500 dark:text-purple-400 font-medium hover:text-indigo-600 dark:hover:text-purple-300 flex items-center">
+                                <i class="fas fa-external-link-alt mr-1"></i> View Project
+                            </a>
+                            <a href="https://github.com/altkriz" target="_blank" class="text-sm text-slate-500 dark:text-slate-400 font-medium hover:text-indigo-600 dark:hover:text-purple-300 flex items-center">
+                                <i class="fab fa-github mr-1"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 duration-300 border border-slate-100 dark:border-slate-800">
+                    <div class="aspect-video overflow-hidden">
+                        <img src="https://camo.githubusercontent.com/a2f61e3a5f8fac897b6bc52ff20308c39b861ba49ddab483d171d1808580a009/68747470733a2f2f6b72617a61313933323030302e6769746875622e696f2f68746d6c656469746f722f7363722e706e67" alt="Kriztech Code Editor" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 bg-white dark:bg-slate-800">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">Kriztech Code Editor</h3>
+                            <span class="text-xs px-2 py-1 bg-indigo-100 dark:bg-purple-900/50 text-indigo-600 dark:text-purple-300 rounded-full">Web Dev</span>
+                        </div>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">
+                            Real-time HTML editor with live preview functionality
+                        </p>
+                        <div class="flex space-x-4">
+                            <a href="https://altkriz.github.io/htmleditor" target="_blank" class="text-sm text-indigo-500 dark:text-purple-400 font-medium hover:text-indigo-600 dark:hover:text-purple-300 flex items-center">
+                                <i class="fas fa-external-link-alt mr-1"></i> View Project
+                            </a>
+                            <a href="https://github.com/altkriz/htmleditor" target="_blank" class="text-sm text-slate-500 dark:text-slate-400 font-medium hover:text-indigo-600 dark:hover:text-purple-300 flex items-center">
+                                <i class="fab fa-github mr-1"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 duration-300 border border-slate-100 dark:border-slate-800">
+                    <div class="aspect-video overflow-hidden">
+                        <img src="https://altkriz.github.io/img/krizbio.png" alt="KrizBio Shortlink & Bio Maker" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 bg-white dark:bg-slate-800">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">KrizBio Link Maker</h3>
+                            <span class="text-xs px-2 py-1 bg-indigo-100 dark:bg-purple-900/50 text-indigo-600 dark:text-purple-300 rounded-full">Web Dev</span>
+                        </div>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">
+                            Shortlink and bio page creator with multiple link management
+                        </p>
+                        <div class="flex space-x-4">
+                            <a href="https://bio.kriztech.in" target="_blank" class="text-sm text-indigo-500 dark:text-purple-400 font-medium hover:text-indigo-600 dark:hover:text-purple-300 flex items-center">
+                                <i class="fas fa-external-link-alt mr-1"></i> View Project
+                            </a>
+                            <a href="https://github.com/altkriz" target="_blank" class="text-sm text-slate-500 dark:text-slate-400 font-medium hover:text-indigo-600 dark:hover:text-purple-300 flex items-center">
+                                <i class="fab fa-github mr-1"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 5 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 duration-300 border border-slate-100 dark:border-slate-800">
+                    <div class="aspect-video overflow-hidden">
+                        <img src="https://altkriz.github.io/img/krizcode.png" alt="KrizCode blog" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 bg-white dark:bg-slate-800">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">KrizCode Blog</h3>
+                            <span class="text-xs px-2 py-1 bg-indigo-100 dark:bg-purple-900/50 text-indigo-600 dark:text-purple-300 rounded-full">Content</span>
+                        </div>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">
+                            Technical blog sharing knowledge about programming and technology
+                        </p>
+                        <div class="flex space-x-4">
+                            <a href="https://krizcode.blogspot.com/" target="_blank" class="text-sm text-indigo-500 dark:text-purple-400 font-medium hover:text-indigo-600 dark:hover:text-purple-300 flex items-center">
+                                <i class="fas fa-external-link-alt mr-1"></i> View Project
+                            </a>
+                            <a href="https://github.com/altkriz" target="_blank" class="text-sm text-slate-500 dark:text-slate-400 font-medium hover:text-indigo-600 dark:hover:text-purple-300 flex items-center">
+                                <i class="fab fa-github mr-1"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 6 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 duration-300 border border-slate-100 dark:border-slate-800">
+                    <div class="aspect-video overflow-hidden">
+                        <img src="https://altkriz.github.io/img/kriznews.png" alt="kriznews" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 bg-white dark:bg-slate-800">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">KrizNews Tech Portal</h3>
+                            <span class="text-xs px-2 py-1 bg-indigo-100 dark:bg-purple-900/50 text-indigo-600 dark:text-purple-300 rounded-full">Web Dev</span>
+                        </div>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">
+                            Technology news aggregator with curated content from multiple sources
+                        </p>
+                        <div class="flex space-x-4">
+                            <a href="https://news.kriztech.in" target="_blank" class="text-sm text-indigo-500 dark:text-purple-400 font-medium hover:text-indigo-600 dark:hover:text-purple-300 flex items-center">
+                                <i class="fas fa-external-link-alt mr-1"></i> View Project
+                            </a>
+                            <a href="https://github.com/altkriz" target="_blank" class="text-sm text-slate-500 dark:text-slate-400 font-medium hover:text-indigo-600 dark:hover:text-purple-300 flex items-center">
+                                <i class="fab fa-github mr-1"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="control" data-id="about">
-            <i class="fas fa-user"></i>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-slate-800 dark:to-slate-900">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold gradient-text inline-block">Let's Connect</h2>
+                <p class="mt-4 max-w-2xl mx-auto text-slate-600 dark:text-slate-300">
+                    Have a project in mind or want to discuss potential opportunities?
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                <div>
+                    <h3 class="text-2xl font-bold mb-6">Get In Touch</h3>
+                    
+                    <div class="space-y-6 mb-8">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-full bg-indigo-100 dark:bg-purple-900/50 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-envelope text-indigo-500 dark:text-purple-300"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Email</h4>
+                                <p class="text-slate-600 dark:text-slate-300">K.raza1932000@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-full bg-indigo-100 dark:bg-purple-900/50 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-phone-alt text-indigo-500 dark:text-purple-300"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Phone</h4>
+                                <p class="text-slate-600 dark:text-slate-300">+91 9315503145</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-full bg-indigo-100 dark:bg-purple-900/50 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-map-marker-alt text-indigo-500 dark:text-purple-300"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Location</h4>
+                                <p class="text-slate-600 dark:text-slate-300">New Delhi, India</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-bold text-lg mb-4">Connect with me</h4>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/altkriz" target="_blank" class="w-12 h-12 rounded-full bg-indigo-100 dark:bg-purple-900/50 flex items-center justify-center text-indigo-500 dark:text-purple-300 hover:bg-indigo-200 dark:hover:bg-purple-800 transition-colors">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                            <a href="https://twitter.com/altkriz" target="_blank" class="w-12 h-12 rounded-full bg-indigo-100 dark:bg-purple-900/50 flex items-center justify-center text-indigo-500 dark:text-purple-300 hover:bg-indigo-200 dark:hover:bg-purple-800 transition-colors">
+                                <i class="fab fa-twitter text-xl"></i>
+                            </a>
+                            <a href="https://www.facebook.com/k.raza193" target="_blank" class="w-12 h-12 rounded-full bg-indigo-100 dark:bg-purple-900/50 flex items-center justify-center text-indigo-500 dark:text-purple-300 hover:bg-indigo-200 dark:hover:bg-purple-800 transition-colors">
+                                <i class="fab fa-facebook-f text-xl"></i>
+                            </a>
+                            <a href="https://www.instagram.com/k.raza193" target="_blank" class="w-12 h-12 rounded-full bg-indigo-100 dark:bg-purple-900/50 flex items-center justify-center text-indigo-500 dark:text-purple-300 hover:bg-indigo-200 dark:hover:bg-purple-800 transition-colors">
+                                <i class="fab fa-instagram text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <div class="absolute -top-6 -left-6 w-32 h-32 rounded-full bg-indigo-200 dark:bg-purple-900/30 blur-3xl -z-10"></div>
+                    <div class="absolute -bottom-6 -right-6 w-32 h-32 rounded-full bg-purple-200 dark:bg-indigo-900/30 blur-3xl -z-10"></div>
+                    <form class="card-glass p-8 rounded-xl shadow-sm">
+                        <div class="mb-6">
+                            <label for="name" class="block text-sm font-medium mb-2">Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white/70 dark:bg-slate-800/70 placeholder-slate-400" placeholder="Your name">
+                        </div>
+                        <div class="mb-6">
+                            <label for="email" class="block text-sm font-medium mb-2">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white/70 dark:bg-slate-800/70 placeholder-slate-400" placeholder="Your email">
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-sm font-medium mb-2">Message</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white/70 dark:bg-slate-800/70 placeholder-slate-400" placeholder="Your message"></textarea>
+                        </div>
+                        <button type="submit" class="w-full px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-lg font-medium shadow-lg hover:shadow-indigo-300 dark:hover:shadow-purple-700 transition-all transform hover:-translate-y-1">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="control" data-id="portfolio">
-            <i class="fas fa-briefcase"></i>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-slate-900 text-slate-300">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col items-center">
+                <a href="#" class="text-2xl font-bold gradient-text mb-4">Kashif Raza</a>
+                <p class="text-center max-w-2xl mx-auto mb-6">
+                    Bridging the gap between electronics engineering and web development to create innovative solutions.
+                </p>
+                <div class="flex space-x-6 mb-6">
+                    <a href="https://github.com/altkriz" target="_blank" class="hover:text-indigo-400 transition-colors"><i class="fab fa-github text-xl"></i></a>
+                    <a href="https://twitter.com/altkriz" target="_blank" class="hover:text-indigo-400 transition-colors"><i class="fab fa-twitter text-xl"></i></a>
+                    <a href="https://www.instagram.com/k.raza193" target="_blank" class="hover:text-indigo-400 transition-colors"><i class="fab fa-instagram text-xl"></i></a>
+                    <a href="https://www.facebook.com/k.raza193" target="_blank" class="hover:text-indigo-400 transition-colors"><i class="fab fa-facebook-f text-xl"></i></a>
+                </div>
+                <p class="text-sm text-slate-500">
+                    &copy; <span id="year"></span> Kashif Raza. All rights reserved.
+                </p>
+            </div>
         </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-indigo-500 text-white shadow-lg hover:bg-indigo-600 transition-colors hidden z-50">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
         
-        <div class="control" data-id="contact">
-            <i class="fas fa-envelope-open"></i>
-        </div>
-    </div>
-    <div class="theme-btn">
-      <i class="fa fa-moon-o" style="color:white;"></i>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-   
-      
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
         
-    <script src="app.js">
-    
-      </script>
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+            document.documentElement.classList.remove('dark');
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+            themeToggle.innerHTML = document.documentElement.classList.contains('dark') 
+                ? '<i class="fas fa-sun"></i>' 
+                : '<i class="fas fa-moon"></i>';
+        });
+        
+        // Custom cursor
+        const cursor = document.querySelector('.cursor-follower');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+        
+        // Add hover effect to interactive elements
+        const hoverElements = document.querySelectorAll('a, button, input, textarea');
+        
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(3)';
+                cursor.style.opacity = '0.2';
+            });
+            
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                cursor.style.opacity = '1';
+            });
+        });
+        
+        // Back to top button
+        const backToTop = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.remove('hidden');
+            } else {
+                backToTop.classList.add('hidden');
+            }
+        });
+        
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update active nav link
+                    document.querySelectorAll('nav a').forEach(link => {
+                        link.classList.remove('active-link');
+                    });
+                    this.classList.add('active-link');
+                }
+            });
+        });
+        
+        // Intersection Observer for scroll animations
+        const sections = document.querySelectorAll('.card-glass, .tech-tag, #about, #skills, #projects, #contact');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fadeIn');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+        
+        // Simple form handling
+        const form = document.querySelector('form');
+        
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Simulate form submission
+            const submitBtn = form.querySelector('button[type="submit"]');
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                submitBtn.innerHTML = 'Message Sent! <i class="fas fa-check ml-2"></i>';
+                
+                setTimeout(() => {
+                    submitBtn.innerHTML = 'Send Message';
+                    submitBtn.disabled = false;
+                    form.reset();
+                }, 2000);
+            }, 1500);
+        });
+    </script>
 </body>
 </html>
