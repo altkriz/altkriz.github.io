@@ -30,7 +30,7 @@ I'm a **developer** and a passionate **student**, eager to explore **software de
 I'm proud to have participated in **Hacktoberfest** and contributed to open-source projects.  
 
 🏅 **Badges & Achievements**  
-- ![Hacktoberfest Badge](https://boards.holopin.io/api/user/altkriz/badge)  
+- ![Hacktoberfest Badge](https://holopin.io/@altkriz)  
 
 ---
 
