@@ -7,52 +7,112 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --bg-light: #f0f0f3;
+            --text-dark: #1a1a1a;
+            --shadow-light: 8px 8px 15px #d1d9e6, -8px -8px 15px #ffffff;
+            --shadow-dark: 8px 8px 15px #0d1117, -8px -8px 15px #1d2432;
+            --inset-light: inset 3px 3px 6px #d1d9e6, inset -3px -3px 6px #ffffff;
+            --inset-dark: inset 3px 3px 6px #0d1117, inset -3px -3px 6px #1d2432;
+        }
         
         body {
-            font-family: 'Space Grotesk', sans-serif;
-            background-color: #f5f7fa;
-            color: #0f172a;
-            overflow-x: hidden;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            transition: all 0.5s ease;
         }
         
         .dark body {
-            background-color: #0f172a;
-            color: #f8fafc;
+            background-color: #121212;
+            color: #f5f5f5;
         }
         
         .gradient-text {
-            background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
         
-        .card-glass {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        .neumorphic {
+            border-radius: 20px;
+            background: var(--bg-light);
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s ease;
         }
         
-        .dark .card-glass {
-            background: rgba(15, 23, 42, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .dark .neumorphic {
+            background: #1e1e1e;
+            box-shadow: var(--shadow-dark);
+        }
+        
+        .neumorphic-inset {
+            border-radius: 20px;
+            background: var(--bg-light);
+            box-shadow: var(--inset-light);
+        }
+        
+        .dark .neumorphic-inset {
+            background: #1e1e1e;
+            box-shadow: var(--inset-dark);
+        }
+        
+        .neumorphic-btn {
+            border-radius: 50px;
+            background: var(--bg-light);
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s ease;
+        }
+        
+        .dark .neumorphic-btn {
+            background: #1e1e1e;
+            box-shadow: var(--shadow-dark);
+        }
+        
+        .neumorphic-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 12px 12px 24px #d1d9e6, -12px -12px 24px #ffffff;
+        }
+        
+        .dark .neumorphic-btn:hover {
+            box-shadow: 12px 12px 24px #0d1117, -12px -12px 24px #1d2432;
+        }
+        
+        .neumorphic-btn:active {
+            box-shadow: var(--inset-light);
+            transform: translateY(1px);
+        }
+        
+        .dark .neumorphic-btn:active {
+            box-shadow: var(--inset-dark);
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
         }
         
         .tech-tag {
-            background: linear-gradient(90deg, #6366f180, #8b5cf680);
-            color: white;
+            border-radius: 50px;
+            background: var(--bg-light);
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s ease;
         }
         
         .dark .tech-tag {
-            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            background: #1e1e1e;
+            box-shadow: var(--shadow-dark);
         }
         
-        .parallax-bg {
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
+        .tech-tag:hover {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            transform: translateY(-3px);
         }
         
         .floating {
@@ -61,17 +121,85 @@
         
         @keyframes float {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
+            50% { transform: translateY(-20px); }
             100% { transform: translateY(0px); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .rotate {
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .wave {
+            animation: wave 3s ease-in-out infinite;
+        }
+        
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(5deg); }
+            50% { transform: rotate(-5deg); }
+        }
+        
+        .active-link {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.5);
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        }
+        
+        .dark .glass-card {
+            background: rgba(30, 30, 30, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .input-field {
+            border-radius: 15px;
+            background: var(--bg-light);
+            box-shadow: var(--inset-light);
+            transition: all 0.3s ease;
+        }
+        
+        .dark .input-field {
+            background: #1e1e1e;
+            box-shadow: var(--inset-dark);
+        }
+        
+        .input-field:focus {
+            box-shadow: var(--shadow-light);
+        }
+        
+        .dark .input-field:focus {
+            box-shadow: var(--shadow-dark);
         }
         
         .gradient-border {
             position: relative;
-            background: #f5f7fa;
+            border-radius: 20px;
+            background: var(--bg-light);
         }
         
         .dark .gradient-border {
-            background: #0f172a;
+            background: #1e1e1e;
         }
         
         .gradient-border::before {
@@ -81,15 +209,42 @@
             left: 0;
             right: 0;
             bottom: 0;
-            border-radius: 0.5rem;
-            padding: 2px;
-            background: linear-gradient(45deg, #6366f1, #8b5cf6);
+            border-radius: 20px;
+            padding: 3px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-mask: 
-                linear-gradient(#fff 0 0) content-box, 
-                linear-gradient(#fff 0 0);
+                 linear-gradient(#fff 0 0) content-box, 
+                 linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
             mask-composite: exclude;
             pointer-events: none;
+        }
+        
+        .animate-fadeIn {
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-slideInLeft {
+            animation: slideInLeft 1s ease forwards;
+        }
+        
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .animate-slideInRight {
+            animation: slideInRight 1s ease forwards;
+        }
+        
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
         }
         
         .cursor-follower {
@@ -101,7 +256,7 @@
             pointer-events: none;
             z-index: 9999;
             transform: translate(-50%, -50%);
-            transition: transform 0.1s ease;
+            transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease;
             mix-blend-mode: multiply;
         }
         
@@ -110,25 +265,37 @@
             mix-blend-mode: screen;
         }
         
-        .active-link {
-            background: linear-gradient(90deg, #6366f1, #8b5cf6);
-            color: white;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        .blob {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.2;
+            z-index: -1;
+            animation: blobMove 15s infinite alternate;
+        }
+        
+        @keyframes blobMove {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(50px, 100px) rotate(90deg); }
+            100% { transform: translate(100px, 50px) rotate(180deg); }
         }
     </style>
 </head>
 <body class="transition-colors duration-300">
+    <!-- Animated background blobs -->
+    <div class="fixed inset-0 overflow-hidden -z-10 opacity-30 dark:opacity-10">
+        <div class="blob top-1/4 left-1/4" style="animation-delay: 0s"></div>
+        <div class="blob top-1/3 right-1/4" style="animation-delay: 3s; width: 400px; height: 400px;"></div>
+        <div class="blob bottom-1/4 right-1/5" style="animation-delay: 6s; width: 350px; height: 350px;"></div>
+        <div class="blob bottom-1/3 left-1/4" style="animation-delay: 9s; width: 450px; height: 450px;"></div>
+    </div>
+    
+    <!-- Custom cursor -->
     <div class="cursor-follower"></div>
     
-    <!-- Floating particles background -->
-    <div class="fixed inset-0 overflow-hidden opacity-10 dark:opacity-5 -z-10">
-        <div class="absolute w-2 h-2 rounded-full bg-indigo-500 top-1/4 left-1/5 floating" style="animation-delay: 0s"></div>
-        <div class="absolute w-3 h-3 rounded-full bg-purple-500 top-1/3 right-1/4 floating" style="animation-delay: 1s"></div>
-        <div class="absolute w-2 h-2 rounded-full bg-indigo-500 bottom-1/4 right-1/5 floating" style="animation-delay: 2s"></div>
-        <div class="absolute w-3 h-3 rounded-full bg-purple-500 bottom-1/3 left-1/4 floating" style="animation-delay: 3s"></div>
-        <div class="absolute w-1 h-1 rounded-full bg-pink-500 top-1/2 left-1/2 floating" style="animation-delay: 4s"></div>
-    </div>
-
     <!-- Header/Navigation -->
     <header class="fixed top-0 left-0 right-0 z-50 py-4 px-6 backdrop-blur-md bg-white/70 dark:bg-slate-900/70 shadow-sm">
         <div class="container mx-auto flex justify-between items-center">
@@ -143,12 +310,12 @@
             </nav>
             
             <div class="flex items-center space-x-4">
-                <button id="theme-toggle" class="w-10 h-10 rounded-full flex items-center justify-center bg-indigo-100 dark:bg-purple-900/50 text-indigo-600 dark:text-purple-300 hover:bg-indigo-200 dark:hover:bg-purple-800 transition-colors">
+                <button id="theme-toggle" class="w-10 h-10 rounded-full flex items-center justify-center neumorphic-btn text-indigo-600 dark:text-purple-300">
                     <i class="fas fa-moon dark:hidden"></i>
                     <i class="fas fa-sun hidden dark:block"></i>
                 </button>
                 
-                <button class="md:hidden focus:outline-none">
+                <button class="md:hidden focus:outline-none neumorphic-btn w-10 h-10 flex items-center justify-center">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
@@ -159,10 +326,10 @@
     <section id="hero" class="min-h-screen flex items-center pt-16">
         <div class="container mx-auto px-6">
             <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
-                <div class="lg:w-1/2 space-y-8">
+                <div class="lg:w-1/2 space-y-8 animate-slideInLeft">
                     <div class="flex items-center space-x-4">
-                        <div class="h-px w-12 bg-indigo-500"></div>
-                        <span class="text-sm font-medium">Diploma in Electronics & BCA Graduate</span>
+                        <div class="h-px w-12 bg-gradient-to-r from-indigo-500 to-purple-500"></div>
+                        <span class="text-sm font-medium neumorphic px-4 py-1 rounded-full">Diploma in Electronics & BCA Graduate</span>
                     </div>
                     
                     <h1 class="text-5xl md:text-6xl font-bold leading-tight">
@@ -174,19 +341,21 @@
                     </p>
                     
                     <div class="flex flex-wrap gap-4 pt-4">
-                        <a href="#contact" class="px-8 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-full font-medium shadow-lg hover:shadow-indigo-300 dark:hover:shadow-purple-700 transition-all transform hover:-translate-y-1">
+                        <a href="#contact" class="px-8 py-3 gradient-bg text-white rounded-full font-medium shadow-lg hover:shadow-indigo-300 dark:hover:shadow-purple-700 transition-all transform hover:-translate-y-1 pulse">
                             Let's Talk
                         </a>
-                        <a href="https://altkriz.github.io/updatedresume.pdf" class="px-8 py-3 border-2 border-indigo-500 dark:border-purple-500 text-indigo-600 dark:text-purple-300 rounded-full font-medium hover:bg-indigo-50 dark:hover:bg-purple-900/20 transition-all">
+                        <a href="https://altkriz.github.io/updatedresume.pdf" class="px-8 py-3 neumorphic-btn text-indigo-600 dark:text-purple-300 rounded-full font-medium hover:bg-indigo-50 dark:hover:bg-purple-900/20 transition-all">
                             Download CV <i class="fas fa-download ml-2"></i>
                         </a>
                     </div>
                 </div>
                 
-                <div class="lg:w-1/2 relative">
+                <div class="lg:w-1/2 relative animate-slideInRight">
                     <div class="w-full aspect-square max-w-md mx-auto relative floating" style="animation-duration: 8s;">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-indigo-400 to-purple-500 rounded-2xl transform -rotate-6"></div>
-                        <img src="https://altkriz.github.io/img/hera.jpg" alt="Kashif Raza" class="relative w-full h-full object-cover rounded-2xl transform rotate-3 border-4 border-white dark:border-slate-800 shadow-xl">
+                        <div class="absolute inset-0 gradient-bg rounded-3xl transform -rotate-6"></div>
+                        <div class="absolute inset-0 gradient-bg rounded-3xl transform rotate-3 opacity-70"></div>
+                        <div class="absolute inset-0 gradient-bg rounded-3xl transform -rotate-12 opacity-40"></div>
+                        <img src="https://altkriz.github.io/img/hera.jpg" alt="Kashif Raza" class="relative w-full h-full object-cover rounded-3xl transform rotate-3 border-4 border-white dark:border-slate-800 shadow-2xl">
                     </div>
                 </div>
             </div>
@@ -204,8 +373,8 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="card-glass p-8 rounded-xl shadow-sm hover:shadow-md transition-all transform hover:-translate-y-2">
-                    <div class="w-14 h-14 rounded-full bg-indigo-100 dark:bg-purple-900 flex items-center justify-center mb-6">
+                <div class="neumorphic p-8 rounded-2xl transition-all transform hover:-translate-y-2 animate-fadeIn" style="animation-delay: 0.2s;">
+                    <div class="w-14 h-14 rounded-full neumorphic-inset flex items-center justify-center mb-6">
                         <i class="fas fa-microchip text-indigo-500 dark:text-purple-300 text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-3">Electronics Engineer</h3>
@@ -214,8 +383,8 @@
                     </p>
                 </div>
                 
-                <div class="card-glass p-8 rounded-xl shadow-sm hover:shadow-md transition-all transform hover:-translate-y-2 relative overflow-hidden">
-                    <div class="w-14 h-14 rounded-full bg-indigo-100 dark:bg-purple-900 flex items-center justify-center mb-6">
+                <div class="neumorphic p-8 rounded-2xl transition-all transform hover:-translate-y-2 animate-fadeIn" style="animation-delay: 0.4s;">
+                    <div class="w-14 h-14 rounded-full neumorphic-inset flex items-center justify-center mb-6">
                         <i class="fas fa-code text-indigo-500 dark:text-purple-300 text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-3">Web Developer</h3>
@@ -224,8 +393,8 @@
                     </p>
                 </div>
                 
-                <div class="card-glass p-8 rounded-xl shadow-sm hover:shadow-md transition-all transform hover:-translate-y-2">
-                    <div class="w-14 h-14 rounded-full bg-indigo-100 dark:bg-purple-900 flex items-center justify-center mb-6">
+                <div class="neumorphic p-8 rounded-2xl transition-all transform hover:-translate-y-2 animate-fadeIn" style="animation-delay: 0.6s;">
+                    <div class="w-14 h-14 rounded-full neumorphic-inset flex items-center justify-center mb-6">
                         <i class="fas fa-blog text-indigo-500 dark:text-purple-300 text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-3">Tech Blogger</h3>
@@ -236,35 +405,35 @@
             </div>
             
             <div class="mt-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="order-last lg:order-first">
-                    <div class="gradient-border p-1 rounded-lg w-fit">
-                        <div class="bg-white dark:bg-slate-800 p-1 rounded-lg">
-                            <img src="https://altkriz.github.io/img/hera.jpg" alt="Kashif Raza" class="w-full max-w-md rounded-lg shadow-lg">
+                <div class="order-last lg:order-first animate-slideInLeft">
+                    <div class="gradient-border p-1 rounded-2xl w-fit">
+                        <div class="neumorphic-inset p-1 rounded-2xl">
+                            <img src="https://altkriz.github.io/img/hera.jpg" alt="Kashif Raza" class="w-full max-w-md rounded-xl shadow-lg wave" style="animation-delay: 0.5s;">
                         </div>
                     </div>
                 </div>
                 
-                <div>
+                <div class="animate-slideInRight">
                     <h2 class="text-3xl font-bold mb-6"><span class="gradient-text">Beyond</span> the Code</h2>
                     <p class="text-slate-600 dark:text-slate-300 mb-6">
                         With a foundation in Electronics Engineering from Ambedkar Institute of Technology and a BCA from IGNOU, I bring a unique perspective to technology. My journey has been about bridging hardware and software to create comprehensive solutions.
                     </p>
                     <div class="space-y-4">
                         <div class="flex items-start space-x-4">
-                            <div class="w-10 h-10 rounded-full bg-indigo-100 dark:bg-purple-900 flex items-center justify-center flex-shrink-0">
+                            <div class="w-12 h-12 rounded-full neumorphic-inset flex items-center justify-center flex-shrink-0">
                                 <i class="fas fa-map-marker-alt text-indigo-500 dark:text-purple-300"></i>
                             </div>
                             <div>
-                                <h4 class="font-bold">Based in New Delhi</h4>
+                                <h4 class="font-bold text-lg">Based in New Delhi</h4>
                                 <p class="text-sm text-slate-500 dark:text-slate-400">Creating digital solutions for global clients</p>
                             </div>
                         </div>
                         <div class="flex items-start space-x-4">
-                            <div class="w-10 h-10 rounded-full bg-indigo-100 dark:bg-purple-900 flex items-center justify-center flex-shrink-0">
+                            <div class="w-12 h-12 rounded-full neumorphic-inset flex items-center justify-center flex-shrink-0">
                                 <i class="fas fa-language text-indigo-500 dark:text-purple-300"></i>
                             </div>
                             <div>
-                                <h4 class="font-bold">Multilingual</h4>
+                                <h4 class="font-bold text-lg">Multilingual</h4>
                                 <p class="text-sm text-slate-500 dark:text-slate-400">English, Urdu, Arabic - facilitating global collaboration</p>
                             </div>
                         </div>
@@ -287,7 +456,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
                 <div class="relative">
                     <div class="absolute -left-8 -top-8 w-32 h-32 rounded-full bg-indigo-200 dark:bg-purple-900/30 blur-3xl"></div>
-                    <div class="card-glass p-8 rounded-xl shadow-sm h-full">
+                    <div class="neumorphic p-8 rounded-2xl h-full animate-fadeIn" style="animation-delay: 0.2s;">
                         <h3 class="text-xl font-bold mb-6 flex items-center">
                             <i class="fas fa-laptop-code mr-3 gradient-text"></i>
                             Web Development
@@ -300,7 +469,7 @@
                                     <span class="font-bold gradient-text">80%</span>
                                 </div>
                                 <div class="w-full h-2 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
-                                    <div class="h-full rounded-full" style="background: linear-gradient(90deg, #6366f1, #8b5cf6); width: 80%"></div>
+                                    <div class="h-full rounded-full gradient-bg" style="width: 80%"></div>
                                 </div>
                             </div>
                             
@@ -310,7 +479,7 @@
                                     <span class="font-bold gradient-text">75%</span>
                                 </div>
                                 <div class="w-full h-2 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
-                                    <div class="h-full rounded-full" style="background: linear-gradient(90deg, #6366f1, #8b5cf6); width: 75%"></div>
+                                    <div class="h-full rounded-full gradient-bg" style="width: 75%"></div>
                                 </div>
                             </div>
                             
@@ -320,7 +489,7 @@
                                     <span class="font-bold gradient-text">75%</span>
                                 </div>
                                 <div class="w-full h-2 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
-                                    <div class="h-full rounded-full" style="background: linear-gradient(90deg, #6366f1, #8b5cf6); width: 75%"></div>
+                                    <div class="h-full rounded-full gradient-bg" style="width: 75%"></div>
                                 </div>
                             </div>
                             
@@ -330,7 +499,7 @@
                                     <span class="font-bold gradient-text">85%</span>
                                 </div>
                                 <div class="w-full h-2 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
-                                    <div class="h-full rounded-full" style="background: linear-gradient(90deg, #6366f1, #8b5cf6); width: 85%"></div>
+                                    <div class="h-full rounded-full gradient-bg" style="width: 85%"></div>
                                 </div>
                             </div>
                         </div>
@@ -339,7 +508,7 @@
                 
                 <div class="relative">
                     <div class="absolute -right-8 -bottom-8 w-32 h-32 rounded-full bg-purple-200 dark:bg-indigo-900/30 blur-3xl"></div>
-                    <div class="card-glass p-8 rounded-xl shadow-sm h-full">
+                    <div class="neumorphic p-8 rounded-2xl h-full animate-fadeIn" style="animation-delay: 0.4s;">
                         <h3 class="text-xl font-bold mb-6 flex items-center">
                             <i class="fas fa-microchip mr-3 gradient-text"></i>
                             Software & Hardware
@@ -352,7 +521,7 @@
                                     <span class="font-bold gradient-text">70%</span>
                                 </div>
                                 <div class="w-full h-2 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
-                                    <div class="h-full rounded-full" style="background: linear-gradient(90deg, #6366f1, #8b5cf6); width: 70%"></div>
+                                    <div class="h-full rounded-full gradient-bg" style="width: 70%"></div>
                                 </div>
                             </div>
                             
@@ -362,7 +531,7 @@
                                     <span class="font-bold gradient-text">80%</span>
                                 </div>
                                 <div class="w-full h-2 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
-                                    <div class="h-full rounded-full" style="background: linear-gradient(90deg, #6366f1, #8b5cf6); width: 80%"></div>
+                                    <div class="h-full rounded-full gradient-bg" style="width: 80%"></div>
                                 </div>
                             </div>
                             
@@ -372,7 +541,7 @@
                                     <span class="font-bold gradient-text">75%</span>
                                 </div>
                                 <div class="w-full h-2 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
-                                    <div class="h-full rounded-full" style="background: linear-gradient(90deg, #6366f1, #8b5cf6); width: 75%"></div>
+                                    <div class="h-full rounded-full gradient-bg" style="width: 75%"></div>
                                 </div>
                             </div>
                             
@@ -382,7 +551,7 @@
                                     <span class="font-bold gradient-text">85%</span>
                                 </div>
                                 <div class="w-full h-2 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
-                                    <div class="h-full rounded-full" style="background: linear-gradient(90deg, #6366f1, #8b5cf6); width: 85%"></div>
+                                    <div class="h-full rounded-full gradient-bg" style="width: 85%"></div>
                                 </div>
                             </div>
                         </div>
@@ -391,14 +560,14 @@
             </div>
             
             <div class="mt-12 flex flex-wrap justify-center gap-3">
-                <span class="tech-tag px-4 py-2 rounded-full text-sm font-medium">HTML5</span>
-                <span class="tech-tag px-4 py-2 rounded-full text-sm font-medium">CSS3</span>
-                <span class="tech-tag px-4 py-2 rounded-full text-sm font-medium">JavaScript</span>
-                <span class="tech-tag px-4 py-2 rounded-full text-sm font-medium">Tailwind CSS</span>
-                <span class="tech-tag px-4 py-2 rounded-full text-sm font-medium">Java</span>
-                <span class="tech-tag px-4 py-2 rounded-full text-sm font-medium">Raspberry Pi</span>
-                <span class="tech-tag px-4 py-2 rounded-full text-sm font-medium">IoT</span>
-                <span class="tech-tag px-4 py-2 rounded-full text-sm font-medium">OpenVPN</span>
+                <span class="tech-tag px-4 py-2 rounded-full text-sm font-medium animate-fadeIn" style="animation-delay: 0.1s;">HTML5</span>
+                <span class="tech-tag px-4 py-2 rounded-full text-sm font-medium animate-fadeIn" style="animation-delay: 0.2s;">CSS3</span>
+                <span class="tech-tag px-4 py-2 rounded-full text-sm font-medium animate-fadeIn" style="animation-delay: 0.3s;">JavaScript</span>
+                <span class="tech-tag px-4 py-2 rounded-full text-sm font-medium animate-fadeIn" style="animation-delay: 0.4s;">Tailwind CSS</span>
+                <span class="tech-tag px-4 py-2 rounded-full text-sm font-medium animate-fadeIn" style="animation-delay: 0.5s;">Java</span>
+                <span class="tech-tag px-4 py-2 rounded-full text-sm font-medium animate-fadeIn" style="animation-delay: 0.6s;">Raspberry Pi</span>
+                <span class="tech-tag px-4 py-2 rounded-full text-sm font-medium animate-fadeIn" style="animation-delay: 0.7s;">IoT</span>
+                <span class="tech-tag px-4 py-2 rounded-full text-sm font-medium animate-fadeIn" style="animation-delay: 0.8s;">OpenVPN</span>
             </div>
         </div>
     </section>
@@ -415,7 +584,7 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Project 1 -->
-                <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 duration-300 border border-slate-100 dark:border-slate-800">
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 duration-300 neumorphic animate-fadeIn" style="animation-delay: 0.2s;">
                     <div class="aspect-video overflow-hidden">
                         <img src="https://1.bp.blogspot.com/-fEOiUn8vCuQ/X2YkOTDZm0I/AAAAAAAAAV8/OJHbuv-h9rU1Pf-Q049tPBhIygtMkt0PACLcBGAsYHQ/w640-h426/OpenVPN-Server-on-Raspberry-Pi.jpg" alt="Raspberry PI Zero VPN Server" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
@@ -439,7 +608,7 @@
                 </div>
                 
                 <!-- Project 2 -->
-                <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 duration-300 border border-slate-100 dark:border-slate-800">
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 duration-300 neumorphic animate-fadeIn" style="animation-delay: 0.4s;">
                     <div class="aspect-video overflow-hidden">
                         <img src="https://circuitdigest.com/sites/default/files/projectimage_mic/Raspberry-Pi-Internet-radio-and-Streaming-Station.jpg" alt="Raspberry Pi Internet Radio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
@@ -463,7 +632,7 @@
                 </div>
                 
                 <!-- Project 3 -->
-                <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 duration-300 border border-slate-100 dark:border-slate-800">
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 duration-300 neumorphic animate-fadeIn" style="animation-delay: 0.6s;">
                     <div class="aspect-video overflow-hidden">
                         <img src="https://altkriz.github.io/htmleditor/img/image.png" alt="Kriztech Code Editor" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
@@ -487,7 +656,7 @@
                 </div>
                 
                 <!-- Project 4 -->
-                <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 duration-300 border border-slate-100 dark:border-slate-800">
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 duration-300 neumorphic animate-fadeIn" style="animation-delay: 0.2s;">
                     <div class="aspect-video overflow-hidden">
                         <img src="https://altkriz.github.io/img/krizbio.png" alt="KrizBio Shortlink & Bio Maker" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
@@ -511,7 +680,7 @@
                 </div>
                 
                 <!-- Project 5 -->
-                <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 duration-300 border border-slate-100 dark:border-slate-800">
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 duration-300 neumorphic animate-fadeIn" style="animation-delay: 0.4s;">
                     <div class="aspect-video overflow-hidden">
                         <img src="https://altkriz.github.io/img/krizcode.png" alt="KrizCode blog" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
@@ -535,7 +704,7 @@
                 </div>
                 
                 <!-- Project 6 -->
-                <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 duration-300 border border-slate-100 dark:border-slate-800">
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 duration-300 neumorphic animate-fadeIn" style="animation-delay: 0.6s;">
                     <div class="aspect-video overflow-hidden">
                         <img src="https://altkriz.github.io/img/kriznews.png" alt="kriznews" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
@@ -572,12 +741,12 @@
             </div>
             
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-                <div>
+                <div class="animate-slideInLeft">
                     <h3 class="text-2xl font-bold mb-6">Get In Touch</h3>
                     
                     <div class="space-y-6 mb-8">
-                        <div class="flex items-start space-x-4">
-                            <div class="w-12 h-12 rounded-full bg-indigo-100 dark:bg-purple-900/50 flex items-center justify-center flex-shrink-0">
+                        <div class="flex items-start space-x-4 neumorphic p-4 rounded-2xl">
+                            <div class="w-12 h-12 rounded-full neumorphic-inset flex items-center justify-center flex-shrink-0">
                                 <i class="fas fa-envelope text-indigo-500 dark:text-purple-300"></i>
                             </div>
                             <div>
@@ -586,8 +755,8 @@
                             </div>
                         </div>
                         
-                        <div class="flex items-start space-x-4">
-                            <div class="w-12 h-12 rounded-full bg-indigo-100 dark:bg-purple-900/50 flex items-center justify-center flex-shrink-0">
+                        <div class="flex items-start space-x-4 neumorphic p-4 rounded-2xl">
+                            <div class="w-12 h-12 rounded-full neumorphic-inset flex items-center justify-center flex-shrink-0">
                                 <i class="fas fa-phone-alt text-indigo-500 dark:text-purple-300"></i>
                             </div>
                             <div>
@@ -596,8 +765,8 @@
                             </div>
                         </div>
                         
-                        <div class="flex items-start space-x-4">
-                            <div class="w-12 h-12 rounded-full bg-indigo-100 dark:bg-purple-900/50 flex items-center justify-center flex-shrink-0">
+                        <div class="flex items-start space-x-4 neumorphic p-4 rounded-2xl">
+                            <div class="w-12 h-12 rounded-full neumorphic-inset flex items-center justify-center flex-shrink-0">
                                 <i class="fas fa-map-marker-alt text-indigo-500 dark:text-purple-300"></i>
                             </div>
                             <div>
@@ -610,39 +779,39 @@
                     <div>
                         <h4 class="font-bold text-lg mb-4">Connect with me</h4>
                         <div class="flex space-x-4">
-                            <a href="https://github.com/altkriz" target="_blank" class="w-12 h-12 rounded-full bg-indigo-100 dark:bg-purple-900/50 flex items-center justify-center text-indigo-500 dark:text-purple-300 hover:bg-indigo-200 dark:hover:bg-purple-800 transition-colors">
+                            <a href="https://github.com/altkriz" target="_blank" class="w-12 h-12 rounded-full neumorphic flex items-center justify-center text-indigo-500 dark:text-purple-300 hover:text-indigo-600 dark:hover:text-purple-200 transition-colors">
                                 <i class="fab fa-github text-xl"></i>
                             </a>
-                            <a href="https://twitter.com/altkriz" target="_blank" class="w-12 h-12 rounded-full bg-indigo-100 dark:bg-purple-900/50 flex items-center justify-center text-indigo-500 dark:text-purple-300 hover:bg-indigo-200 dark:hover:bg-purple-800 transition-colors">
+                            <a href="https://twitter.com/altkriz" target="_blank" class="w-12 h-12 rounded-full neumorphic flex items-center justify-center text-indigo-500 dark:text-purple-300 hover:text-indigo-600 dark:hover:text-purple-200 transition-colors">
                                 <i class="fab fa-twitter text-xl"></i>
                             </a>
-                            <a href="https://www.facebook.com/k.raza193" target="_blank" class="w-12 h-12 rounded-full bg-indigo-100 dark:bg-purple-900/50 flex items-center justify-center text-indigo-500 dark:text-purple-300 hover:bg-indigo-200 dark:hover:bg-purple-800 transition-colors">
+                            <a href="https://www.facebook.com/k.raza193" target="_blank" class="w-12 h-12 rounded-full neumorphic flex items-center justify-center text-indigo-500 dark:text-purple-300 hover:text-indigo-600 dark:hover:text-purple-200 transition-colors">
                                 <i class="fab fa-facebook-f text-xl"></i>
                             </a>
-                            <a href="https://www.instagram.com/k.raza193" target="_blank" class="w-12 h-12 rounded-full bg-indigo-100 dark:bg-purple-900/50 flex items-center justify-center text-indigo-500 dark:text-purple-300 hover:bg-indigo-200 dark:hover:bg-purple-800 transition-colors">
+                            <a href="https://www.instagram.com/k.raza193" target="_blank" class="w-12 h-12 rounded-full neumorphic flex items-center justify-center text-indigo-500 dark:text-purple-300 hover:text-indigo-600 dark:hover:text-purple-200 transition-colors">
                                 <i class="fab fa-instagram text-xl"></i>
                             </a>
                         </div>
                     </div>
                 </div>
                 
-                <div class="relative">
+                <div class="relative animate-slideInRight">
                     <div class="absolute -top-6 -left-6 w-32 h-32 rounded-full bg-indigo-200 dark:bg-purple-900/30 blur-3xl -z-10"></div>
                     <div class="absolute -bottom-6 -right-6 w-32 h-32 rounded-full bg-purple-200 dark:bg-indigo-900/30 blur-3xl -z-10"></div>
-                    <form class="card-glass p-8 rounded-xl shadow-sm">
+                    <form class="neumorphic p-8 rounded-2xl">
                         <div class="mb-6">
                             <label for="name" class="block text-sm font-medium mb-2">Name</label>
-                            <input type="text" id="name" class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white/70 dark:bg-slate-800/70 placeholder-slate-400" placeholder="Your name">
+                            <input type="text" id="name" class="w-full px-4 py-3 rounded-lg input-field focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-slate-400" placeholder="Your name">
                         </div>
                         <div class="mb-6">
                             <label for="email" class="block text-sm font-medium mb-2">Email</label>
-                            <input type="email" id="email" class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white/70 dark:bg-slate-800/70 placeholder-slate-400" placeholder="Your email">
+                            <input type="email" id="email" class="w-full px-4 py-3 rounded-lg input-field focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-slate-400" placeholder="Your email">
                         </div>
                         <div class="mb-6">
                             <label for="message" class="block text-sm font-medium mb-2">Message</label>
-                            <textarea id="message" rows="4" class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white/70 dark:bg-slate-800/70 placeholder-slate-400" placeholder="Your message"></textarea>
+                            <textarea id="message" rows="4" class="w-full px-4 py-3 rounded-lg input-field focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-slate-400" placeholder="Your message"></textarea>
                         </div>
-                        <button type="submit" class="w-full px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-lg font-medium shadow-lg hover:shadow-indigo-300 dark:hover:shadow-purple-700 transition-all transform hover:-translate-y-1">
+                        <button type="submit" class="w-full px-6 py-3 gradient-bg text-white rounded-lg font-medium shadow-lg hover:shadow-indigo-300 dark:hover:shadow-purple-700 transition-all transform hover:-translate-y-1 pulse">
                             Send Message
                         </button>
                     </form>
@@ -652,7 +821,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-8 bg-slate-900 text-slate-300">
+    <footer class="py-12 bg-slate-900 text-slate-300">
         <div class="container mx-auto px-6">
             <div class="flex flex-col items-center">
                 <a href="#" class="text-2xl font-bold gradient-text mb-4">Kashif Raza</a>
@@ -660,10 +829,18 @@
                     Bridging the gap between electronics engineering and web development to create innovative solutions.
                 </p>
                 <div class="flex space-x-6 mb-6">
-                    <a href="https://github.com/altkriz" target="_blank" class="hover:text-indigo-400 transition-colors"><i class="fab fa-github text-xl"></i></a>
-                    <a href="https://twitter.com/altkriz" target="_blank" class="hover:text-indigo-400 transition-colors"><i class="fab fa-twitter text-xl"></i></a>
-                    <a href="https://www.instagram.com/k.raza193" target="_blank" class="hover:text-indigo-400 transition-colors"><i class="fab fa-instagram text-xl"></i></a>
-                    <a href="https://www.facebook.com/k.raza193" target="_blank" class="hover:text-indigo-400 transition-colors"><i class="fab fa-facebook-f text-xl"></i></a>
+                    <a href="https://github.com/altkriz" target="_blank" class="w-10 h-10 rounded-full neumorphic flex items-center justify-center text-indigo-400 hover:text-white transition-colors">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://twitter.com/altkriz" target="_blank" class="w-10 h-10 rounded-full neumorphic flex items-center justify-center text-indigo-400 hover:text-white transition-colors">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://www.instagram.com/k.raza193" target="_blank" class="w-10 h-10 rounded-full neumorphic flex items-center justify-center text-indigo-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.facebook.com/k.raza193" target="_blank" class="w-10 h-10 rounded-full neumorphic flex items-center justify-center text-indigo-400 hover:text-white transition-colors">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
                 </div>
                 <p class="text-sm text-slate-500">
                     &copy; <span id="year"></span> Kashif Raza. All rights reserved.
@@ -673,7 +850,7 @@
     </footer>
 
     <!-- Back to Top Button -->
-    <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-indigo-500 text-white shadow-lg hover:bg-indigo-600 transition-colors hidden z-50">
+    <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 rounded-full gradient-bg text-white shadow-lg hover:shadow-indigo-300 dark:hover:shadow-purple-700 transition-all transform hover:-translate-y-1 hidden z-50">
         <i class="fas fa-arrow-up"></i>
     </button>
 
@@ -713,12 +890,14 @@
         
         hoverElements.forEach(el => {
             el.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'scale(3)';
-                cursor.style.opacity = '0.2';
+                cursor.style.width = '40px';
+                cursor.style.height = '40px';
+                cursor.style.opacity = '0.3';
             });
             
             el.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'scale(1)';
+                cursor.style.width = '20px';
+                cursor.style.height = '20px';
                 cursor.style.opacity = '1';
             });
         });
@@ -765,12 +944,12 @@
         });
         
         // Intersection Observer for scroll animations
-        const sections = document.querySelectorAll('.card-glass, .tech-tag, #about, #skills, #projects, #contact');
+        const animateElements = document.querySelectorAll('.animate-fadeIn, .animate-slideInLeft, .animate-slideInRight');
         
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-fadeIn');
+                    entry.target.classList.add('animate-fadeIn-active');
                     observer.unobserve(entry.target);
                 }
             });
@@ -778,8 +957,8 @@
             threshold: 0.1
         });
         
-        sections.forEach(section => {
-            observer.observe(section);
+        animateElements.forEach(element => {
+            observer.observe(element);
         });
         
         // Simple form handling
@@ -803,6 +982,18 @@
                 }, 2000);
             }, 1500);
         });
+        
+        // Add wave animation to profile image on hover
+        const profileImage = document.querySelector('#about img');
+        if (profileImage) {
+            profileImage.addEventListener('mouseenter', () => {
+                profileImage.classList.add('wave');
+            });
+            
+            profileImage.addEventListener('mouseleave', () => {
+                profileImage.classList.remove('wave');
+            });
+        }
     </script>
 </body>
 </html>
