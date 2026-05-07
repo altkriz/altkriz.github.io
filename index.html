@@ -1,546 +1,1009 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- ===== META / SEO ===== -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Kashif Raza — Software Engineer</title>
+  <title>Kashif Raza — Software Engineer & Creative Technologist</title>
   <meta name="description" content="Kashif Raza — Software Engineer blending electronics and web to build clean, fast, useful products." />
-  <meta name="theme-color" content="#0a0f1f" />
-
-  <!-- OG -->
+  <meta name="theme-color" content="#0a0a0f" />
+  
   <meta property="og:title" content="Kashif Raza — Software Engineer" />
   <meta property="og:description" content="Building modern digital experiences with a hardware-rooted mindset." />
   <meta property="og:image" content="https://altkriz.github.io/img/hera.jpg" />
   <meta property="og:type" content="website" />
 
-  <!-- Fonts & Tailwind -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-  <!-- Tailwind Config -->
   <script>
     tailwind.config = {
-      darkMode: 'class',
       theme: {
         extend: {
           colors: {
-            base: { 900: '#070a14', 850:'#0a0f1f', 800:'#0f162b' },
-            aurora: { from:'#00b3ff', via:'#8b5cf6', to:'#00ffa5' },
-            brand: { 500:'#7c9cff', 600:'#6a86ff' }
+            base: { 950: '#050508', 900: '#0a0a0f', 800: '#12121a', 700: '#1a1a24' },
+            accent: { 400: '#00ffc8', 500: '#00e6b5', 600: '#00cca3' },
+            muted: { 400: '#6b7280', 500: '#4b5563', 600: '#374151' }
           },
           fontFamily: {
-            sans: ['Inter','system-ui','sans-serif'],
-            display: ['Space Grotesk','Inter','system-ui','sans-serif']
-          },
-          boxShadow: {
-            card: '0 10px 30px rgba(0,0,0,.25)',
-            lift: '0 24px 60px rgba(0,0,0,.35)'
+            display: ['Outfit', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+            sans: ['Outfit', 'sans-serif']
           }
         }
       }
     }
   </script>
 
-  <!-- Theme init (prevents flash) -->
-  <script>
-    (function(){
-      const saved = localStorage.getItem('theme');
-      const preferDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      if (saved === 'dark' || (!saved && preferDark)) {
-        document.documentElement.classList.add('dark');
-      }
-    })();
-  </script>
-
-  <!-- ===== Styles ===== -->
   <style>
+    :root {
+      --bg: #050508;
+      --fg: #f4f4f5;
+      --muted: #71717a;
+      --accent: #00ffc8;
+      --card: rgba(20, 20, 28, 0.7);
+      --border: rgba(255, 255, 255, 0.08);
+      --glow: rgba(0, 255, 200, 0.15);
+    }
+
+    * { box-sizing: border-box; }
+    
     html { scroll-behavior: smooth; }
-    body { font-family: Inter, system-ui, sans-serif; }
-    .aurora {
-      position: fixed; inset: -20% -10% -10% -10%; z-index: -2;
-      background:
-        radial-gradient(40% 50% at 20% 20%, rgba(0,179,255,.22), transparent 55%),
-        radial-gradient(35% 45% at 80% 30%, rgba(139,92,246,.20), transparent 60%),
-        radial-gradient(55% 60% at 60% 80%, rgba(0,255,165,.18), transparent 60%);
-      filter: blur(40px);
-      animation: drift 18s ease-in-out infinite;
+    
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      overflow-x: hidden;
     }
-    @keyframes drift { 0%,100%{transform:translate3d(0,0,0) scale(1)} 50%{transform:translate3d(2%,-2%,0) scale(1.06)} }
 
-    .glass { background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-             backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,.10); }
-    .holo-frame { position: relative; border-radius: 1.25rem; overflow: hidden; }
-    .holo-frame::before {
-      content:""; position:absolute; inset:-2px; border-radius:1.35rem;
-      background: conic-gradient(from 180deg, #00b3ff, #8b5cf6, #00ffa5, #00b3ff);
-      filter: blur(10px); opacity:.7; z-index:-1; animation: spin 10s linear infinite;
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+    /* Canvas background */
+    #bgCanvas {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.6;
     }
-    @keyframes spin { to { transform: rotate(360deg) } }
 
-    /* Reveal */
-    .reveal { opacity:0; transform: translateY(40px); transition: .9s cubic-bezier(.2,.65,.25,1); }
-    .reveal.visible { opacity:1; transform:none; }
+    /* Noise overlay */
+    .noise-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
 
-    /* Scroll progress */
-    #progress { position: fixed; top:0; left:0; height:3px; width:0%; z-index:60;
-      background: linear-gradient(90deg, #00b3ff, #8b5cf6, #00ffa5); }
+    /* Animated border gradient */
+    .gradient-border {
+      position: relative;
+      background: var(--card);
+      border-radius: 1rem;
+    }
+    .gradient-border::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, var(--accent), transparent 40%, transparent 60%, rgba(0, 255, 200, 0.3));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
 
-    /* Magnetic cursor */
-    #cursor { mix-blend-mode: screen; }
+    /* Text gradient */
+    .text-gradient {
+      background: linear-gradient(135deg, var(--accent) 0%, #00b8ff 50%, var(--accent) 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
-    /* Divider line */
-    .divider { height:1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.15), transparent); }
+    /* Reveal animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* Hover lift */
+    .hover-lift {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .hover-lift:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 255, 200, 0.1);
+    }
+
+    /* Magnetic button */
+    .magnetic-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.75rem;
+      background: var(--accent);
+      color: var(--bg);
+      font-weight: 600;
+      border-radius: 9999px;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+    .magnetic-btn:hover {
+      box-shadow: 0 0 30px var(--glow);
+    }
+
+    /* Skill tag */
+    .skill-tag {
+      padding: 0.5rem 1rem;
+      background: rgba(0, 255, 200, 0.05);
+      border: 1px solid rgba(0, 255, 200, 0.15);
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      transition: all 0.3s ease;
+    }
+    .skill-tag:hover {
+      background: rgba(0, 255, 200, 0.1);
+      border-color: rgba(0, 255, 200, 0.3);
+      transform: scale(1.05);
+    }
+
+    /* Timeline */
+    .timeline-line {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+    }
+    .timeline-dot {
+      position: absolute;
+      left: -5px;
+      top: 8px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 20px var(--glow);
+    }
+
+    /* Tab system */
+    .tab-btn {
+      padding: 0.75rem 1.5rem;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      border-radius: 0.5rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .tab-btn.active {
+      background: rgba(0, 255, 200, 0.1);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .tab-btn:hover:not(.active) {
+      border-color: rgba(255, 255, 255, 0.2);
+      color: var(--fg);
+    }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* Focus states */
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    /* Floating animation */
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(2deg); }
+    }
+    .float-animation {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    /* Pulse glow */
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px var(--glow); }
+      50% { box-shadow: 0 0 40px var(--glow), 0 0 60px rgba(0, 255, 200, 0.1); }
+    }
+    .pulse-glow {
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+
+    /* Progress bar */
+    #scrollProgress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 2px;
+      background: var(--accent);
+      z-index: 100;
+      transition: width 0.1s linear;
+    }
   </style>
 </head>
 
-<body class="bg-base-900 text-white selection:bg-aurora-from/30 selection:text-white">
-  <div class="aurora"></div>
-  <div id="progress"></div>
+<body>
+  <!-- Background Canvas -->
+  <canvas id="bgCanvas"></canvas>
+  <div class="noise-overlay"></div>
+  
+  <!-- Scroll Progress -->
+  <div id="scrollProgress"></div>
 
-  <!-- ===== Header ===== -->
-  <header class="fixed top-0 inset-x-0 z-50 glass">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="#" class="font-display text-xl font-bold tracking-tight">Kashif <span class="text-brand-500">Raza</span></a>
-      <nav class="hidden md:flex items-center gap-7 text-sm text-white/85">
-        <a href="#about" class="hover:text-white">About</a>
-        <a href="#timeline" class="hover:text-white">Journey</a>
-        <a href="#skills" class="hover:text-white">Skills</a>
-        <a href="#projects" class="hover:text-white">Projects</a>
-        <a href="#tools" class="hover:text-white">Tools</a>
-        <a href="#contact" class="hover:text-white">Contact</a>
-        <!-- Theme toggle -->
-        <button id="themeToggle" class="w-9 h-9 rounded-full glass flex items-center justify-center transition" title="Toggle theme">
-          <i class="fa-solid fa-sun hidden" id="sunIcon"></i>
-          <i class="fa-solid fa-moon" id="moonIcon"></i>
-        </button>
-      </nav>
-      <button id="mobileBtn" class="md:hidden w-10 h-10 rounded-lg glass flex items-center justify-center" aria-label="Menu">
-        <i class="fa-solid fa-bars text-white/85"></i>
+  <!-- Navigation -->
+  <header class="fixed top-0 inset-x-0 z-50 backdrop-blur-xl bg-base-950/80 border-b border-white/5">
+    <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#" class="font-display text-xl font-bold tracking-tight">
+        <span class="text-gradient">Kahif Raza</span>
+      </a>
+      
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#about" class="text-sm text-zinc-400 hover:text-white transition-colors">About</a>
+        <a href="#education" class="text-sm text-zinc-400 hover:text-white transition-colors">Education</a>
+        <a href="#projects" class="text-sm text-zinc-400 hover:text-white transition-colors">Projects</a>
+        <a href="#tools" class="text-sm text-zinc-400 hover:text-white transition-colors">Tools</a>
+        <a href="#contact" class="magnetic-btn text-sm">Get in Touch</a>
+      </div>
+
+      <button id="mobileMenuBtn" class="md:hidden w-10 h-10 flex items-center justify-center rounded-lg border border-white/10 hover:border-white/20 transition" aria-label="Toggle menu">
+        <i class="fa-solid fa-bars text-white/80"></i>
       </button>
-    </div>
-    <!-- Mobile -->
-    <div id="mobileMenu" class="md:hidden hidden border-t border-white/10 glass">
-      <div class="px-6 py-4 flex flex-col gap-3 text-sm text-white/85">
-        <a href="#about" class="py-2">About</a>
-        <a href="#timeline" class="py-2">Journey</a>
-        <a href="#skills" class="py-2">Skills</a>
-        <a href="#projects" class="py-2">Projects</a>
-        <a href="#tools" class="py-2">Tools</a>
-        <a href="#contact" class="py-2">Contact</a>
-        <button id="themeToggleM" class="mt-2 w-max px-3 py-2 rounded-md glass text-xs">Toggle Theme</button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-white/5 bg-base-950/95 backdrop-blur-xl">
+      <div class="px-6 py-4 flex flex-col gap-4">
+        <a href="#about" class="text-zinc-400 hover:text-white transition-colors py-2">About</a>
+        <a href="#education" class="text-zinc-400 hover:text-white transition-colors py-2">Education</a>
+        <a href="#projects" class="text-zinc-400 hover:text-white transition-colors py-2">Projects</a>
+        <a href="#tools" class="text-zinc-400 hover:text-white transition-colors py-2">Tools</a>
+        <a href="#contact" class="magnetic-btn text-sm justify-center mt-2">Get in Touch</a>
       </div>
     </div>
   </header>
 
-  <!-- ===== Hero ===== -->
-  <section class="relative pt-24 md:pt-32">
-    <!-- subtle aurora lines -->
-    <div class="pointer-events-none absolute inset-0 -z-10 opacity-40">
-      <svg class="absolute -top-24 -left-24 w-[680px] blur-3xl" viewBox="0 0 600 600" fill="none">
-        <path d="M0 300 C 120 180, 240 420, 360 300 S 600 300, 600 300" stroke="url(#g1)" stroke-width="120" stroke-linecap="round"/>
-        <defs><linearGradient id="g1"><stop offset="0" stop-color="#00b3ff"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs>
-      </svg>
-      <svg class="absolute bottom-[-120px] right-[-140px] w-[720px] blur-3xl opacity-70" viewBox="0 0 600 600" fill="none">
-        <path d="M0 300 C 120 180, 240 420, 360 300 S 600 300, 600 300" stroke="url(#g2)" stroke-width="120" stroke-linecap="round"/>
-        <defs><linearGradient id="g2"><stop offset="0" stop-color="#00ffa5"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs>
-      </svg>
-    </div>
+  <!-- Hero Section -->
+  <section class="min-h-screen flex items-center pt-24 pb-16 relative overflow-hidden">
+    <!-- Decorative elements -->
+    <div class="absolute top-1/4 right-0 w-96 h-96 bg-accent-400/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    
+    <div class="max-w-6xl mx-auto px-6 w-full">
+      <div class="grid lg:grid-cols-5 gap-12 items-center">
+        <!-- Text Content -->
+        <div class="lg:col-span-3 space-y-6">
+          <div class="reveal">
+            <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm text-zinc-400">
+              <span class="w-2 h-2 rounded-full bg-accent-400 animate-pulse"></span>
+              Available for opportunities
+            </span>
+          </div>
+          
+          <h1 class="reveal reveal-delay-1 font-display text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight">
+            Kashif Raza
+          </h1>
+          
+          <p class="reveal reveal-delay-2 font-mono text-accent-400 text-lg md:text-xl">
+            Software Engineer & Creative Technologist
+          </p>
+          
+          <p class="reveal reveal-delay-3 text-zinc-400 text-lg max-w-xl leading-relaxed">
+            Blending electronics engineering with modern web development. I build focused, fast products with clean UX — from embedded systems to full-stack applications.
+          </p>
+          
+          <div class="reveal reveal-delay-4 flex flex-wrap gap-4 pt-4">
+            <a href="#contact" class="magnetic-btn">
+              <span>Let's Collaborate</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="https://altkriz.github.io/resume.pdf" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/20 hover:border-accent-400/50 hover:bg-white/5 transition-all">
+              <span>Download CV</span>
+              <i class="fa-solid fa-download text-sm"></i>
+            </a>
+          </div>
+          
+          <div class="reveal reveal-delay-4 flex items-center gap-6 pt-6 text-sm text-zinc-500">
+            <span class="flex items-center gap-2">
+              <i class="fa-solid fa-location-dot text-accent-400"></i>
+              New Delhi, India
+            </span>
+            <span class="w-px h-4 bg-white/10"></span>
+            <span class="flex items-center gap-2">
+              <i class="fa-solid fa-language text-accent-400"></i>
+              English · Urdu · Arabic
+            </span>
+          </div>
+        </div>
 
-    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12 items-center">
-      <div class="lg:col-span-6 reveal">
-        <p class="text-xs uppercase tracking-[0.18em] text-white/60">Software Engineer • Web Developer • IoT</p>
-        <h1 class="mt-3 font-display text-5xl md:text-6xl font-extrabold leading-[1.05]">
-          I build <span class="bg-gradient-to-r from-aurora-from via-aurora-via to-aurora-to bg-clip-text text-transparent">focused, fast</span> products with clean UX.
-        </h1>
-        <p class="mt-5 text-lg text-white/70 max-w-xl">
-          Electronics + BCA foundation. Pragmatic engineering from API to UI. I ship useful tools and keep them elegant.
-        </p>
-        <div class="mt-8 flex flex-wrap items-center gap-3">
-          <a href="#contact" class="px-5 py-3 rounded-lg bg-white/10 border border-white/20 font-semibold hover:shadow-lift transition">Get in touch</a>
-          <a href="https://altkriz.github.io/resume.pdf" class="px-5 py-3 rounded-lg glass font-semibold hover:shadow-card transition">
-            Download CV <i class="fa-solid fa-download ml-2"></i>
+        <!-- Image -->
+        <div class="lg:col-span-2 reveal reveal-delay-2">
+          <div class="relative float-animation">
+            <div class="gradient-border p-1 pulse-glow">
+              <img 
+                src="https://altkriz.github.io/img/hera.jpg" 
+                alt="Kashif Raza" 
+                class="w-full rounded-xl aspect-[3/4] object-cover"
+                loading="eager"
+              />
+            </div>
+            <!-- Floating badges -->
+            <div class="absolute -right-4 top-1/4 gradient-border px-3 py-2 rounded-lg backdrop-blur-xl">
+              <span class="font-mono text-xs text-accent-400">5+ Years</span>
+            </div>
+            <div class="absolute -left-4 bottom-1/4 gradient-border px-3 py-2 rounded-lg backdrop-blur-xl">
+              <span class="font-mono text-xs text-accent-400">IoT Expert</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-24 relative">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-16 items-start">
+        <div class="reveal">
+          <span class="font-mono text-accent-400 text-sm">// About Me</span>
+          <h2 class="font-display text-4xl md:text-5xl font-bold mt-3 mb-6">
+            Engineering with <span class="text-gradient">Purpose</span>
+          </h2>
+          <div class="space-y-4 text-zinc-400 leading-relaxed">
+            <p>
+              With roots in electronics engineering and a master's in computer applications, I bring a systems-level mindset to every project. I think in layers — from hardware interfaces to API architecture to polished user experiences.
+            </p>
+            <p>
+              My approach combines pragmatic engineering with intentional design. Every line of code serves a purpose, every interaction is considered, and every product is built to perform.
+            </p>
+          </div>
+          
+          <div class="grid grid-cols-2 gap-4 mt-8">
+            <div class="gradient-border p-4 hover-lift">
+              <div class="font-mono text-3xl font-bold text-accent-400">85%</div>
+              <div class="text-sm text-zinc-500 mt-1">Tailwind CSS</div>
+            </div>
+            <div class="gradient-border p-4 hover-lift">
+              <div class="font-mono text-3xl font-bold text-accent-400">80%</div>
+              <div class="text-sm text-zinc-500 mt-1">HTML5 & Semantics</div>
+            </div>
+            <div class="gradient-border p-4 hover-lift">
+              <div class="font-mono text-3xl font-bold text-accent-400">75%</div>
+              <div class="text-sm text-zinc-500 mt-1">JavaScript & IoT</div>
+            </div>
+            <div class="gradient-border p-4 hover-lift">
+              <div class="font-mono text-3xl font-bold text-accent-400">70%</div>
+              <div class="text-sm text-zinc-500 mt-1">Python</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal reveal-delay-2">
+          <h3 class="font-display text-xl font-semibold mb-6">Core Technologies</h3>
+          <div class="flex flex-wrap gap-3">
+            <span class="skill-tag">HTML5</span>
+            <span class="skill-tag">CSS3</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">Tailwind CSS</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">PHP</span>
+            <span class="skill-tag">Raspberry Pi</span>
+            <span class="skill-tag">IoT Systems</span>
+            <span class="skill-tag">Electronics</span>
+            <span class="skill-tag">API Design</span>
+          </div>
+          
+          <h3 class="font-display text-xl font-semibold mt-10 mb-4">What I Focus On</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3 text-zinc-400">
+              <i class="fa-solid fa-check text-accent-400 mt-1"></i>
+              <span>Intentional motion & user experience design</span>
+            </li>
+            <li class="flex items-start gap-3 text-zinc-400">
+              <i class="fa-solid fa-check text-accent-400 mt-1"></i>
+              <span>Performance-first architecture</span>
+            </li>
+            <li class="flex items-start gap-3 text-zinc-400">
+              <i class="fa-solid fa-check text-accent-400 mt-1"></i>
+              <span>Clean, maintainable code patterns</span>
+            </li>
+            <li class="flex items-start gap-3 text-zinc-400">
+              <i class="fa-solid fa-check text-accent-400 mt-1"></i>
+              <span>Ship quickly, iterate thoughtfully</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section id="education" class="py-24 relative">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-accent-400/5 to-transparent pointer-events-none"></div>
+    
+    <div class="max-w-6xl mx-auto px-6 relative">
+      <div class="text-center mb-16 reveal">
+        <span class="font-mono text-accent-400 text-sm">// Education</span>
+        <h2 class="font-display text-4xl md:text-5xl font-bold mt-3">Academic Journey</h2>
+      </div>
+
+      <div class="max-w-3xl mx-auto">
+        <div class="relative pl-8 space-y-12">
+          <div class="timeline-line"></div>
+          
+          <!-- MCA -->
+          <div class="reveal relative">
+            <div class="timeline-dot"></div>
+            <div class="gradient-border p-6 hover-lift">
+              <div class="flex items-start justify-between flex-wrap gap-4">
+                <div>
+                  <h3 class="font-display text-xl font-semibold">Master of Computer Applications</h3>
+                  <p class="text-accent-400 font-mono text-sm mt-1">Jamia Hamdard University</p>
+                </div>
+                <span class="px-3 py-1 rounded-full bg-accent-400/10 text-accent-400 text-xs font-mono">Current</span>
+              </div>
+              <p class="text-zinc-500 text-sm mt-3">Advanced computer science, software architecture, and modern development practices.</p>
+            </div>
+          </div>
+
+          <!-- BCA -->
+          <div class="reveal reveal-delay-1 relative">
+            <div class="timeline-dot"></div>
+            <div class="gradient-border p-6 hover-lift">
+              <div class="flex items-start justify-between flex-wrap gap-4">
+                <div>
+                  <h3 class="font-display text-xl font-semibold">Bachelor of Computer Applications</h3>
+                  <p class="text-accent-400 font-mono text-sm mt-1">IGNOU</p>
+                </div>
+              </div>
+              <p class="text-zinc-500 text-sm mt-3">Foundation in programming, database management, and software development lifecycle.</p>
+            </div>
+          </div>
+
+          <!-- Diploma -->
+          <div class="reveal reveal-delay-2 relative">
+            <div class="timeline-dot"></div>
+            <div class="gradient-border p-6 hover-lift">
+              <div class="flex items-start justify-between flex-wrap gap-4">
+                <div>
+                  <h3 class="font-display text-xl font-semibold">Diploma in Electronics Engineering</h3>
+                  <p class="text-accent-400 font-mono text-sm mt-1">Ambedkar Institute of Technology, New Delhi</p>
+                </div>
+              </div>
+              <p class="text-zinc-500 text-sm mt-3">Hardware systems, embedded programming, circuit design, and IoT foundations.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16 reveal">
+        <span class="font-mono text-accent-400 text-sm">// Portfolio</span>
+        <h2 class="font-display text-4xl md:text-5xl font-bold mt-3">Selected Projects</h2>
+      </div>
+
+      <!-- Tab Navigation -->
+      <div class="flex flex-wrap justify-center gap-3 mb-12 reveal">
+        <button class="tab-btn active" data-tab="all">All Projects</button>
+        <button class="tab-btn" data-tab="web">Web Development</button>
+        <button class="tab-btn" data-tab="iot">IoT & Electronics</button>
+      </div>
+
+      <!-- Projects Grid -->
+      <div id="projectsGrid" class="grid md:grid-cols-2 gap-8">
+        <!-- KrizVibe Editor -->
+        <article class="reveal tab-content active project-card" data-category="web">
+          <div class="gradient-border overflow-hidden hover-lift">
+            <div class="aspect-video overflow-hidden bg-base-800">
+              <img 
+                src="https://altkriz.github.io/htmleditor/img/scr1.png" 
+                alt="KrizVibe Editor" 
+                class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="font-display text-xl font-semibold">KrizVibe Editor</h3>
+                <span class="px-2 py-1 rounded bg-accent-400/10 text-accent-400 text-xs font-mono">Web Dev</span>
+              </div>
+              <p class="text-zinc-400 text-sm mb-4">A vibecoding platform for creative developers. Real-time HTML editor with live preview, designed for the modern coding workflow.</p>
+              <div class="flex items-center gap-4">
+                <a href="https://altkriz.github.io/htmleditor" target="_blank" class="text-accent-400 hover:underline text-sm flex items-center gap-1">
+                  <span>Launch Editor</span>
+                  <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                </a>
+                <a href="https://github.com/altkriz/htmleditor" target="_blank" class="text-zinc-500 hover:text-white text-sm flex items-center gap-1">
+                  <i class="fa-brands fa-github"></i>
+                  <span>Source</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- KrizBio -->
+        <article class="reveal reveal-delay-1 tab-content active project-card" data-category="web">
+          <div class="gradient-border overflow-hidden hover-lift">
+            <div class="aspect-video overflow-hidden bg-base-800">
+              <img 
+                src="https://altkriz.github.io/img/krizbio.png" 
+                alt="KrizBio" 
+                class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="font-display text-xl font-semibold">KrizBio Link Maker</h3>
+                <span class="px-2 py-1 rounded bg-accent-400/10 text-accent-400 text-xs font-mono">Web Dev</span>
+              </div>
+              <p class="text-zinc-400 text-sm mb-4">Smart URL shortener and bio link creator. Manage multiple links through a single, customizable landing page.</p>
+              <div class="flex items-center gap-4">
+                <a href="https://bio.kriztech.in" target="_blank" class="text-accent-400 hover:underline text-sm flex items-center gap-1">
+                  <span>Visit Site</span>
+                  <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Raspberry Pi VPN -->
+        <article class="reveal reveal-delay-2 tab-content active project-card" data-category="iot">
+          <div class="gradient-border overflow-hidden hover-lift">
+            <div class="aspect-video overflow-hidden bg-base-800">
+              <img 
+                src="https://1.bp.blogspot.com/-fEOiUn8vCuQ/X2YkOTDZm0I/AAAAAAAAAV8/OJHbuv-h9rU1Pf-Q049tPBhIygtMkt0PACLcBGAsYHQ/w640-h426/OpenVPN-Server-on-Raspberry-Pi.jpg" 
+                alt="Raspberry PI VPN Server" 
+                class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="font-display text-xl font-semibold">Raspberry Pi VPN Server</h3>
+                <span class="px-2 py-1 rounded bg-accent-400/10 text-accent-400 text-xs font-mono">IoT</span>
+              </div>
+              <p class="text-zinc-400 text-sm mb-4">Turn Raspberry Pi Zero into a secure VPN server using OpenVPN. Complete setup guide with performance optimization.</p>
+              <div class="flex items-center gap-4">
+                <a href="https://kriztechblogs.blogspot.com/2020/09/turn-your-raspberry-pi-zero-into-vpn.html" target="_blank" class="text-accent-400 hover:underline text-sm flex items-center gap-1">
+                  <span>Read Guide</span>
+                  <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Internet Radio -->
+        <article class="reveal reveal-delay-3 tab-content active project-card" data-category="iot">
+          <div class="gradient-border overflow-hidden hover-lift">
+            <div class="aspect-video overflow-hidden bg-base-800">
+              <img 
+                src="https://circuitdigest.com/sites/default/files/projectimage_mic/Raspberry-Pi-Internet-radio-and-Streaming-Station.jpg" 
+                alt="Internet Radio Station" 
+                class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="font-display text-xl font-semibold">Internet Radio Station</h3>
+                <span class="px-2 py-1 rounded bg-accent-400/10 text-accent-400 text-xs font-mono">IoT</span>
+              </div>
+              <p class="text-zinc-400 text-sm mb-4">Raspberry Pi powered internet radio with streaming capabilities. Custom interface and remote control integration.</p>
+              <div class="flex items-center gap-4">
+                <a href="https://kriztechblogs.blogspot.com/2021/06/raspberry-pi-internet-radio-and.html" target="_blank" class="text-accent-400 hover:underline text-sm flex items-center gap-1">
+                  <span>Read Guide</span>
+                  <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tools Section -->
+  <section id="tools" class="py-24 relative">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-accent-400/5 to-transparent pointer-events-none"></div>
+    
+    <div class="max-w-6xl mx-auto px-6 relative">
+      <div class="text-center mb-16 reveal">
+        <span class="font-mono text-accent-400 text-sm">// Free Tools</span>
+        <h2 class="font-display text-4xl md:text-5xl font-bold mt-3">Tools I've Built</h2>
+        <p class="text-zinc-400 mt-4 max-w-xl mx-auto">Free tools and services designed to solve real problems. Built with performance and simplicity in mind.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- KrizVibe Editor -->
+        <div class="reveal gradient-border p-6 hover-lift">
+          <div class="w-12 h-12 rounded-lg bg-accent-400/10 flex items-center justify-center mb-4">
+            <i class="fa-solid fa-code text-accent-400 text-xl"></i>
+          </div>
+          <h3 class="font-display text-lg font-semibold">KrizVibe Editor</h3>
+          <p class="text-zinc-500 text-sm mt-2 mb-4">Vibecoding platform with real-time HTML preview. Perfect for quick prototyping.</p>
+          <a href="https://altkriz.github.io/htmleditor/" target="_blank" class="text-accent-400 hover:underline text-sm flex items-center gap-1">
+            <span>Open Tool</span>
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
           </a>
         </div>
-        <div class="mt-6 flex items-center gap-4 text-sm text-white/60">
-          <i class="fa-solid fa-location-dot"></i> New Delhi, India
-          <span class="h-3 w-px bg-white/15"></span>
-          <i class="fa-solid fa-language"></i> English · Urdu · Arabic
-        </div>
-      </div>
 
-      <div class="lg:col-span-6 flex justify-center reveal">
-        <!-- Natural ratio portrait, no fixed height -->
-        <div class="relative w-[320px] md:w-[360px] max-w-full rounded-2xl holo-frame overflow-hidden shadow-lift parallax ml-auto mr-auto md:mr-0">
-          <img src="https://altkriz.github.io/img/hera.jpg" alt="Kashif Raza" class="w-full h-auto rounded-2xl object-cover" loading="eager"/>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider max-w-7xl mx-auto mt-16"></div>
-
-  <!-- ===== About ===== -->
-  <section id="about" class="py-24">
-    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-start">
-      <div class="reveal">
-        <h2 class="font-display text-3xl md:text-4xl font-bold">Software roots, <span class="text-brand-500">product-focused</span> engineering</h2>
-        <p class="mt-4 text-white/75">
-          Diploma in Electronics (Ambedkar Institute of Technology) and BCA (IGNOU). I think in systems: clean APIs, robust infra, accessible UI, and real performance.
-        </p>
-        <ul class="mt-6 grid sm:grid-cols-2 gap-3 text-sm text-white/70">
-          <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-500"></i> Intentional motion & UX</li>
-          <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-500"></i> Performance-first</li>
-          <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-500"></i> Clear, maintainable code</li>
-          <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-500"></i> Ship quickly, iterate</li>
-        </ul>
-      </div>
-      <div class="reveal">
-        <div class="grid grid-cols-2 gap-4">
-          <div class="rounded-xl glass p-5 hover:shadow-lift transition">
-            <div class="text-3xl font-bold">85%</div>
-            <div class="text-sm text-white/60">Tailwind CSS</div>
-          </div>
-          <div class="rounded-xl glass p-5 hover:shadow-lift transition">
-            <div class="text-3xl font-bold">80%</div>
-            <div class="text-sm text-white/60">HTML</div>
-          </div>
-          <div class="rounded-xl glass p-5 hover:shadow-lift transition">
-            <div class="text-3xl font-bold">75%</div>
-            <div class="text-sm text-white/60">JavaScript & IoT</div>
-          </div>
-          <div class="rounded-xl glass p-5 hover:shadow-lift transition">
-            <div class="text-3xl font-bold">70%</div>
-            <div class="text-sm text-white/60">Python</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Journey Timeline ===== -->
-  <section id="timeline" class="py-28 reveal">
-    <div class="max-w-4xl mx-auto px-6">
-      <h2 class="text-3xl font-bold mb-10">Journey & Experience</h2>
-      <div class="border-l border-white/20 space-y-10 pl-6">
-        <div>
-         
-          <h3 class="text-xl font-semibold">Diploma in Electronics Engineering</h3>
-          <p class="opacity-70">Ambedkar Institute of Technology, New Delhi.</p>
-        </div>
-        <div>
-          <h3 class="text-xl font-semibold">Bachelor in Computer Applications (BCA)</h3>
-          <p class="opacity-70">Indira Gandhi National Open University</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Skills ===== -->
-  <section id="skills" class="py-20">
-    <div class="max-w-7xl mx-auto px-6">
-      <h2 class="font-display text-3xl font-bold text-center reveal">Core Stack</h2>
-      <div class="flex flex-wrap justify-center gap-3 mt-12 reveal">
-        <span class="px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm hover:bg-white/20 transition-all cursor-default">HTML5</span>
-        <span class="px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm hover:bg-white/20 transition-all cursor-default">CSS3</span>
-        <span class="px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm hover:bg-white/20 transition-all cursor-default">JavaScript</span>
-        <span class="px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm hover:bg-white/20 transition-all cursor-default">Tailwind CSS</span>
-        <span class="px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm hover:bg-white/20 transition-all cursor-default">Python</span>
-        <span class="px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm hover:bg-white/20 transition-all cursor-default">PHP Pi</span>
-        <span class="px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm hover:bg-white/20 transition-all cursor-default">IoT</span>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider max-w-7xl mx-auto"></div>
-
-  <!-- ===== Projects ===== -->
-  <section id="projects" class="py-24">
-    <div class="max-w-7xl mx-auto px-6">
-      <h2 class="font-display text-3xl md:text-4xl font-bold text-center reveal">Selected Projects</h2>
-
-      <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- P1 -->
-        <article class="rounded-xl glass overflow-hidden hover:shadow-lift parallax reveal">
-          <div class="aspect-video overflow-hidden bg-base-800">
-            <img src="https://1.bp.blogspot.com/-fEOiUn8vCuQ/X2YkOTDZm0I/AAAAAAAAAV8/OJHbuv-h9rU1Pf-Q049tPBhIygtMkt0PACLcBGAsYHQ/w640-h426/OpenVPN-Server-on-Raspberry-Pi.jpg" alt="Raspberry PI VPN Server" class="w-full h-full object-cover" loading="lazy">
-          </div>
-          <div class="p-5">
-            <div class="flex items-center justify-between mb-1">
-              <h3 class="font-bold text-lg">Raspberry PI VPN Server</h3>
-              <span class="text-xs px-2 py-0.5 rounded-full bg-white/10">Electronics</span>
-            </div>
-            <p class="text-sm text-white/70">Turn Raspberry Pi Zero into a VPN server using OpenVPN.</p>
-            <div class="mt-3 flex items-center gap-4 text-sm">
-              <a href="https://kriztechblogs.blogspot.com/2020/09/turn-your-raspberry-pi-zero-into-vpn.html" target="_blank" class="text-brand-500 hover:underline">View Project</a>
-              <a href="https://github.com/altkriz" target="_blank" class="text-white/60 hover:underline">Code</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- P2 -->
-        <article class="rounded-xl glass overflow-hidden hover:shadow-lift parallax reveal">
-          <div class="aspect-video overflow-hidden bg-base-800">
-            <img src="https://circuitdigest.com/sites/default/files/projectimage_mic/Raspberry-Pi-Internet-radio-and-Streaming-Station.jpg" alt="Raspberry Pi Internet Radio" class="w-full h-full object-cover" loading="lazy">
-          </div>
-          <div class="p-5">
-            <div class="flex items-center justify-between mb-1">
-              <h3 class="font-bold text-lg">Internet Radio Station</h3>
-              <span class="text-xs px-2 py-0.5 rounded-full bg-white/10">IoT</span>
-            </div>
-            <p class="text-sm text-white/70">Raspberry Pi powered internet radio with streaming.</p>
-            <div class="mt-3 flex items-center gap-4 text-sm">
-              <a href="https://kriztechblogs.blogspot.com/2021/06/raspberry-pi-internet-radio-and.html" target="_blank" class="text-brand-500 hover:underline">View Project</a>
-              <a href="https://github.com/altkriz" target="_blank" class="text-white/60 hover:underline">Code</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- P3 -->
-        <article class="rounded-xl glass overflow-hidden hover:shadow-lift parallax reveal">
-          <div class="aspect-video overflow-hidden bg-base-800">
-            <img src="https://altkriz.github.io/htmleditor/img/image.png" alt="Kriztech Code Editor" class="w-full h-full object-cover" loading="lazy">
-          </div>
-          <div class="p-5">
-            <div class="flex items-center justify-between mb-1">
-              <h3 class="font-bold text-lg">Kriztech Code Editor</h3>
-              <span class="text-xs px-2 py-0.5 rounded-full bg-white/10">Web Dev</span>
-            </div>
-            <p class="text-sm text-white/70">Real-time HTML editor with live preview.</p>
-            <div class="mt-3 flex items-center gap-4 text-sm">
-              <a href="https://altkriz.github.io/htmleditor" target="_blank" class="text-brand-500 hover:underline">View</a>
-              <a href="https://github.com/altkriz/htmleditor" target="_blank" class="text-white/60 hover:underline">Code</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- P4 -->
-        <article class="rounded-xl glass overflow-hidden hover:shadow-lift parallax reveal">
-          <div class="aspect-video overflow-hidden bg-base-800">
-            <img src="https://altkriz.github.io/img/krizbio.png" alt="KrizBio" class="w-full h-full object-cover" loading="lazy">
-          </div>
-          <div class="p-5">
-            <div class="flex items-center justify-between mb-1">
-              <h3 class="font-bold text-lg">KrizBio Link Maker</h3>
-              <span class="text-xs px-2 py-0.5 rounded-full bg-white/10">Web Dev</span>
-            </div>
-            <p class="text-sm text-white/70">Shortlink & bio page creator with multiple links.</p>
-            <div class="mt-3 flex items-center gap-4 text-sm">
-              <a href="https://bio.kriztech.in" target="_blank" class="text-brand-500 hover:underline">View</a>
-              <a href="https://github.com/altkriz" target="_blank" class="text-white/60 hover:underline">Code</a>
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider max-w-7xl mx-auto"></div>
-
-  <!-- ===== Tools ===== -->
-  <section id="tools" class="py-24">
-    <div class="max-w-7xl mx-auto px-6">
-      <h2 class="font-display text-3xl md:text-4xl font-bold text-center reveal">Free Tools & Services</h2>
-
-      <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- KrizBio -->
-        <article class="rounded-xl glass overflow-hidden hover:shadow-lift parallax reveal">
-          <div class="h-48 overflow-hidden bg-base-800">
-            <img src="https://altkriz.github.io/img/krizbio.png" alt="KrizBio" class="w-full h-full object-cover" loading="lazy">
+        <div class="reveal reveal-delay-1 gradient-border p-6 hover-lift">
+          <div class="w-12 h-12 rounded-lg bg-accent-400/10 flex items-center justify-center mb-4">
+            <i class="fa-solid fa-link text-accent-400 text-xl"></i>
           </div>
-          <div class="p-5">
-            <h3 class="font-bold text-lg">KrizBio</h3>
-            <p class="text-sm text-white/70">Smart URL shortener & bio link tool.</p>
-            <a href="https://bio.kriztech.in" target="_blank" class="inline-flex items-center gap-2 text-brand-500 mt-3 text-sm">Use Tool <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-          </div>
-        </article>
-
-        <!-- Code Editor -->
-        <article class="rounded-xl glass overflow-hidden hover:shadow-lift parallax reveal">
-          <div class="h-48 overflow-hidden bg-base-800">
-            <img src="https://altkriz.github.io/htmleditor/img/image.png" alt="KrizTech Code Editor" class="w-full h-full object-cover" loading="lazy">
-          </div>
-          <div class="p-5">
-            <h3 class="font-bold text-lg">KrizTech Code Editor</h3>
-            <p class="text-sm text-white/70">Online editor with live preview.</p>
-            <a href="https://altkriz.github.io/htmleditor/" target="_blank" class="inline-flex items-center gap-2 text-brand-500 mt-3 text-sm">Use Tool <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-          </div>
-        </article>
-
-        <!-- KrizPlay -->
-        <article class="rounded-xl glass overflow-hidden hover:shadow-lift parallax reveal">
-          <div class="h-48 overflow-hidden bg-base-800">
-            <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1470&q=80" alt="KrizPlay" class="w-full h-full object-cover" loading="lazy">
-          </div>
-          <div class="p-5">
-            <h3 class="font-bold text-lg">KrizPlay</h3>
-            <p class="text-sm text-white/70">Stream movies & web series.</p>
-            <a href="https://kriztech.in/movie" target="_blank" class="inline-flex items-center gap-2 text-brand-500 mt-3 text-sm">Use Tool <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-          </div>
-        </article>
+          <h3 class="font-display text-lg font-semibold">KrizBio</h3>
+          <p class="text-zinc-500 text-sm mt-2 mb-4">Smart URL shortener and bio link tool for creators and businesses.</p>
+          <a href="https://bio.kriztech.in" target="_blank" class="text-accent-400 hover:underline text-sm flex items-center gap-1">
+            <span>Open Tool</span>
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+          </a>
+        </div>
 
         <!-- ImageX -->
-        <article class="rounded-xl glass overflow-hidden hover:shadow-lift parallax reveal">
-          <div class="h-48 overflow-hidden bg-base-800">
-            <img src="https://kriztech.in/imagen/logo.jpg" alt="ImageX" class="w-full h-full object-cover" loading="lazy">
+        <div class="reveal reveal-delay-2 gradient-border p-6 hover-lift">
+          <div class="w-12 h-12 rounded-lg bg-accent-400/10 flex items-center justify-center mb-4">
+            <i class="fa-solid fa-image text-accent-400 text-xl"></i>
           </div>
-          <div class="p-5">
-            <h3 class="font-bold text-lg">ImageX</h3>
-            <p class="text-sm text-white/70">Free AI image generation.</p>
-            <a href="https://kriztech.in/imagen" target="_blank" class="inline-flex items-center gap-2 text-brand-500 mt-3 text-sm">Use Tool <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-          </div>
-        </article>
+          <h3 class="font-display text-lg font-semibold">ImageX</h3>
+          <p class="text-zinc-500 text-sm mt-2 mb-4">Free AI-powered image generation. Create stunning visuals in seconds.</p>
+          <a href="https://kriztech.in/imagen" target="_blank" class="text-accent-400 hover:underline text-sm flex items-center gap-1">
+            <span>Open Tool</span>
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+          </a>
+        </div>
 
         <!-- VoiceCraft -->
-        <article class="rounded-xl glass overflow-hidden hover:shadow-lift parallax reveal">
-          <div class="h-48 overflow-hidden bg-base-800">
-            <img src="https://kriztech.in/voicecraft/logo.jpg" alt="VoiceCraft" class="w-full h-full object-cover" loading="lazy">
+        <div class="reveal reveal-delay-3 gradient-border p-6 hover-lift">
+          <div class="w-12 h-12 rounded-lg bg-accent-400/10 flex items-center justify-center mb-4">
+            <i class="fa-solid fa-microphone text-accent-400 text-xl"></i>
           </div>
-          <div class="p-5">
-            <h3 class="font-bold text-lg">VoiceCraft</h3>
-            <p class="text-sm text-white/70">Convert text to lifelike speech.</p>
-            <a href="https://kriztech.in/voicecraft" target="_blank" class="inline-flex items-center gap-2 text-brand-500 mt-3 text-sm">Use Tool <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-          </div>
-        </article>
+          <h3 class="font-display text-lg font-semibold">VoiceCraft</h3>
+          <p class="text-zinc-500 text-sm mt-2 mb-4">Convert text to lifelike speech with multiple voice options.</p>
+          <a href="https://kriztech.in/voicecraft" target="_blank" class="text-accent-400 hover:underline text-sm flex items-center gap-1">
+            <span>Open Tool</span>
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+          </a>
+        </div>
 
-        <!-- NEW: KrizClip -->
-        <article class="rounded-xl glass overflow-hidden hover:shadow-lift parallax reveal">
-          <div class="h-48 overflow-hidden bg-base-800">
-            <img src="https://kriztech.in/clip/icon.jpg" alt="KrizClip" class="w-full h-full object-cover" loading="lazy">
+        <!-- KrizPlay -->
+        <div class="reveal reveal-delay-4 gradient-border p-6 hover-lift">
+          <div class="w-12 h-12 rounded-lg bg-accent-400/10 flex items-center justify-center mb-4">
+            <i class="fa-solid fa-play text-accent-400 text-xl"></i>
           </div>
-          <div class="p-5">
-            <h3 class="font-bold text-lg">KrizClip</h3>
-            <p class="text-sm text-white/70">AI Video Generator for shorts & edits.</p>
-            <a href="https://kriztech.in/clip" target="_blank" class="inline-flex items-center gap-2 text-brand-500 mt-3 text-sm">Use Tool <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          <h3 class="font-display text-lg font-semibold">KrizPlay</h3>
+          <p class="text-zinc-500 text-sm mt-2 mb-4">Stream movies and web series. Entertainment at your fingertips.</p>
+          <a href="https://kriztech.in/movie" target="_blank" class="text-accent-400 hover:underline text-sm flex items-center gap-1">
+            <span>Open Tool</span>
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+          </a>
+        </div>
+
+        <!-- KrizClip -->
+        <div class="reveal reveal-delay-4 gradient-border p-6 hover-lift">
+          <div class="w-12 h-12 rounded-lg bg-accent-400/10 flex items-center justify-center mb-4">
+            <i class="fa-solid fa-video text-accent-400 text-xl"></i>
           </div>
-        </article>
+          <h3 class="font-display text-lg font-semibold">KrizClip</h3>
+          <p class="text-zinc-500 text-sm mt-2 mb-4">AI video generator for shorts and edits. Create content faster.</p>
+          <a href="https://kriztech.in/clip" target="_blank" class="text-accent-400 hover:underline text-sm flex items-center gap-1">
+            <span>Open Tool</span>
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
-  <div class="divider max-w-7xl mx-auto"></div>
-
-  <!-- ===== Contact (no form) ===== -->
+  <!-- Contact Section -->
   <section id="contact" class="py-24">
-    <div class="max-w-6xl mx-auto px-6 text-center reveal">
-      <h2 class="font-display text-3xl md:text-4xl font-bold">Let’s build something useful</h2>
-      <p class="mt-3 text-white/75">Open to collaborations, freelance work, and interesting problems.</p>
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-16 reveal">
+        <span class="font-mono text-accent-400 text-sm">// Contact</span>
+        <h2 class="font-display text-4xl md:text-5xl font-bold mt-3">Let's Build Something Useful</h2>
+        <p class="text-zinc-400 mt-4">Open to collaborations, freelance work, and interesting problems.</p>
+      </div>
 
-      <div class="mt-10 grid sm:grid-cols-3 gap-4">
-        <div class="rounded-xl glass p-6">
-          <div class="text-white/60 text-sm mb-1">Email</div>
-          <a href="mailto:K.raza1932000@gmail.com" class="font-semibold hover:underline">altkriz@gmail.com</a>
+      <div class="grid sm:grid-cols-3 gap-6 mb-12">
+        <div class="reveal gradient-border p-6 text-center hover-lift">
+          <div class="w-10 h-10 rounded-full bg-accent-400/10 flex items-center justify-center mx-auto mb-4">
+            <i class="fa-solid fa-envelope text-accent-400"></i>
+          </div>
+          <div class="text-zinc-500 text-xs uppercase tracking-wider mb-2">Email</div>
+          <a href="mailto:altkriz@gmail.com" class="text-white hover:text-accent-400 transition-colors">altkriz@gmail.com</a>
         </div>
-        <div class="rounded-xl glass p-6">
-          <div class="text-white/60 text-sm mb-1">Phone</div>
-          <a href="tel:+919315503145" class="font-semibold hover:underline">+91 9315503145</a>
+
+        <div class="reveal reveal-delay-1 gradient-border p-6 text-center hover-lift">
+          <div class="w-10 h-10 rounded-full bg-accent-400/10 flex items-center justify-center mx-auto mb-4">
+            <i class="fa-solid fa-phone text-accent-400"></i>
+          </div>
+          <div class="text-zinc-500 text-xs uppercase tracking-wider mb-2">Phone</div>
+          <a href="tel:+919315503145" class="text-white hover:text-accent-400 transition-colors">+91 9315503145</a>
         </div>
-        <div class="rounded-xl glass p-6">
-          <div class="text-white/60 text-sm mb-1">Location</div>
-          <div class="font-semibold">New Delhi, India</div>
+
+        <div class="reveal reveal-delay-2 gradient-border p-6 text-center hover-lift">
+          <div class="w-10 h-10 rounded-full bg-accent-400/10 flex items-center justify-center mx-auto mb-4">
+            <i class="fa-solid fa-location-dot text-accent-400"></i>
+          </div>
+          <div class="text-zinc-500 text-xs uppercase tracking-wider mb-2">Location</div>
+          <span class="text-white">New Delhi, India</span>
         </div>
       </div>
 
-      <div class="mt-6 flex justify-center gap-5 text-xl text-white/85">
-        <a href="https://github.com/altkriz" target="_blank" aria-label="GitHub" class="hover:text-white"><i class="fab fa-github"></i></a>
-        <a href="https://twitter.com/altkriz" target="_blank" aria-label="Twitter" class="hover:text-white"><i class="fab fa-twitter"></i></a>
-        <a href="https://www.facebook.com/altkriz" target="_blank" aria-label="Facebook" class="hover:text-white"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.instagram.com/altkriz" target="_blank" aria-label="Instagram" class="hover:text-white"><i class="fab fa-instagram"></i></a>
+      <!-- Social Links -->
+      <div class="reveal flex justify-center gap-4">
+        <a href="https://github.com/altkriz" target="_blank" aria-label="GitHub" class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:border-accent-400 hover:bg-accent-400/10 transition-all">
+          <i class="fa-brands fa-github text-lg"></i>
+        </a>
+        <a href="https://twitter.com/altkriz" target="_blank" aria-label="Twitter" class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:border-accent-400 hover:bg-accent-400/10 transition-all">
+          <i class="fa-brands fa-twitter text-lg"></i>
+        </a>
+        <a href="https://www.facebook.com/altkriz" target="_blank" aria-label="Facebook" class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:border-accent-400 hover:bg-accent-400/10 transition-all">
+          <i class="fa-brands fa-facebook-f text-lg"></i>
+        </a>
+        <a href="https://www.instagram.com/altkriz" target="_blank" aria-label="Instagram" class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:border-accent-400 hover:bg-accent-400/10 transition-all">
+          <i class="fa-brands fa-instagram text-lg"></i>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- ===== Footer ===== -->
-  <footer class="py-10">
-    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-3 text-white/60 text-sm">
+  <!-- Footer -->
+  <footer class="py-8 border-t border-white/5">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-zinc-500 text-sm">
       <div>&copy; <span id="year"></span> Kashif Raza. All rights reserved.</div>
+      <div class="flex items-center gap-2">
+        <span>Crafted with</span>
+        <i class="fa-solid fa-heart text-accent-400 text-xs"></i>
+        <span>in New Delhi</span>
+      </div>
     </div>
   </footer>
 
-  <!-- Magnetic Cursor -->
-  <div id="cursor" class="pointer-events-none fixed w-6 h-6 rounded-full bg-white/20 backdrop-blur-sm border border-white/40 z-[9999] transition-transform duration-150"></div>
-
-  <!-- ===== Scripts ===== -->
   <script>
-    // Footer year
+    // Initialize year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Mobile menu
-    const mobileBtn = document.getElementById('mobileBtn');
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
-    mobileBtn?.addEventListener('click', ()=> mobileMenu.classList.toggle('hidden'));
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
 
-    // Smooth anchor offset (fixed header)
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', (e)=>{
-        const id = a.getAttribute('href');
-        const el = document.querySelector(id);
-        if (el) {
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const target = document.querySelector(targetId);
+        if (target) {
           e.preventDefault();
-          window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });
-          if (a.closest('#mobileMenu')) mobileMenu.classList.add('hidden');
+          const offset = 80;
+          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top: targetPosition, behavior: 'smooth' });
         }
       });
     });
 
-    // Reveal on scroll (no jank)
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!prefersReduced) {
-      const io = new IntersectionObserver((entries)=>{
-        entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target);} });
-      }, { threshold: .12 });
-      document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+    // Scroll progress
+    const scrollProgress = document.getElementById('scrollProgress');
+    
+    function updateScrollProgress() {
+      const scrollTop = window.pageYOffset;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = Math.max(0, Math.min(100, (scrollTop / docHeight) * 100));
+      scrollProgress.style.width = progress + '%';
+    }
+    
+    window.addEventListener('scroll', updateScrollProgress, { passive: true });
+    updateScrollProgress();
+
+    // Reveal on scroll with IntersectionObserver
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (!prefersReducedMotion) {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+      
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
     } else {
-      document.querySelectorAll('.reveal').forEach(el=> el.classList.add('visible'));
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
     }
 
-    // Scroll progress
-    const progress = document.getElementById('progress');
-    const onScroll = () => {
-      const h = document.documentElement;
-      const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
-      progress.style.width = scrolled + '%';
-    };
-    document.addEventListener('scroll', onScroll, { passive: true }); onScroll();
-
-    // Magnetic cursor
-    const cursor = document.getElementById("cursor");
-    document.addEventListener("mousemove", (e) => {
-      cursor.style.left = e.clientX + "px";
-      cursor.style.top = e.clientY + "px";
+    // Tab filtering for projects
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update active tab
+        tabBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        const filter = btn.dataset.tab;
+        
+        projectCards.forEach(card => {
+          const category = card.dataset.category;
+          
+          if (filter === 'all' || category === filter) {
+            card.classList.add('active');
+            card.style.display = 'block';
+            setTimeout(() => card.classList.add('visible'), 50);
+          } else {
+            card.classList.remove('active');
+            card.style.display = 'none';
+          }
+        });
+      });
     });
-    document.querySelectorAll("a, button, .glass, .parallax").forEach(el => {
-      el.addEventListener("mouseenter", () => cursor.style.transform = "scale(2)");
-      el.addEventListener("mouseleave", () => cursor.style.transform = "scale(1)");
-    });
 
-    // Theme toggle
-    const root = document.documentElement;
-    const themeToggle = document.getElementById('themeToggle');
-    const themeToggleM = document.getElementById('themeToggleM');
-    const sunIcon = document.getElementById('sunIcon');
-    const moonIcon = document.getElementById('moonIcon');
-
-    function setTheme(dark) {
-      if (dark) {
-        root.classList.add('dark');
-        sunIcon.classList.remove('hidden'); moonIcon.classList.add('hidden');
-        localStorage.setItem('theme','dark');
-      } else {
-        root.classList.remove('dark');
-        sunIcon.classList.add('hidden'); moonIcon.classList.remove('hidden');
-        localStorage.setItem('theme','light');
+    // Canvas background animation
+    const canvas = document.getElementById('bgCanvas');
+    const ctx = canvas.getContext('2d');
+    
+    let width = 0;
+    let height = 0;
+    let particles = [];
+    let animationId = null;
+    
+    function resize() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+      initParticles();
+    }
+    
+    function initParticles() {
+      particles = [];
+      const count = Math.min(50, Math.floor((width * height) / 25000));
+      
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: Math.max(1, Math.random() * 2 + 0.5),
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
+          alpha: Math.random() * 0.5 + 0.2
+        });
       }
     }
-    // init theme
-    const saved = localStorage.getItem('theme');
-    setTheme(saved ? saved === 'dark' : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches));
+    
+    function drawParticle(p) {
+      const r = Math.max(0.5, p.radius);
+      const a = Math.max(0, Math.min(1, p.alpha));
+      
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(0, 255, 200, ' + a + ')';
+      ctx.fill();
+    }
+    
+    function drawConnections() {
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          
+          if (dist < 150) {
+            const alpha = Math.max(0, Math.min(0.15, (1 - dist / 150) * 0.15));
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = 'rgba(0, 255, 200, ' + alpha + ')';
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+    }
+    
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      
+      // Update and draw particles
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        
+        // Wrap around
+        if (p.x < 0) p.x = width;
+        if (p.x > width) p.x = 0;
+        if (p.y < 0) p.y = height;
+        if (p.y > height) p.y = 0;
+        
+        drawParticle(p);
+      });
+      
+      drawConnections();
+      
+      animationId = requestAnimationFrame(animate);
+    }
+    
+    // Check reduced motion before starting animation
+    if (!prefersReducedMotion) {
+      resize();
+      window.addEventListener('resize', resize);
+      animate();
+    }
 
-    themeToggle?.addEventListener('click', ()=> setTheme(!root.classList.contains('dark')));
-    themeToggleM?.addEventListener('click', ()=> setTheme(!root.classList.contains('dark')));
+    // Magnetic button effect
+    const magneticBtns = document.querySelectorAll('.magnetic-btn');
+    
+    magneticBtns.forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        
+        btn.style.transform = 'translate(' + (x * 0.1) + 'px, ' + (y * 0.1) + 'px)';
+      });
+      
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'translate(0, 0)';
+      });
+    });
   </script>
 </body>
 </html>
